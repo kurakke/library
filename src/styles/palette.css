@@ -1,6 +1,6 @@
 :root {
-    --primary-green: #478468;
-    --primary-green-light: #e5f0eb;
+    --brand-green: #478468;
+    --brand-green-light: #e5f0eb;
     --gray-dark: #4f4f4f;
     --gray-default: #828282;
     --gray-light: #f2f2f2;
@@ -9,5 +9,5 @@
 }
 
 :root {
-    color: var(--primary-green);
+    color: var(--brand-green);
 }

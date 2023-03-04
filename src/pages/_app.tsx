@@ -1,14 +1,20 @@
-import "@/styles/index.css";
+import { Toaster } from "react-hot-toast";
+import "../styles/index.css";
 
 // HACK: AppPropsを使用するとエラーが発生していたため、独自で型定義をしました。
-const MyApp = ({
+function MyApp({
     Component,
     pageProps,
 }: {
     Component: (props: Object) => JSX.Element;
     pageProps: Object;
-}): JSX.Element => {
-    return <Component {...pageProps} />;
-};
+}) {
+    return (
+        <>
+            <Component {...pageProps} />
+            <Toaster position="bottom-center" />
+        </>
+    );
+}
 
 export default MyApp;
