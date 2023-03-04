@@ -1,6 +1,14 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import "@/styles/index.css";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+// HACK: AppPropsを使用するとエラーが発生していたため、独自で型定義をしました。
+const MyApp = ({
+    Component,
+    pageProps,
+}: {
+    Component: (props: Object) => JSX.Element;
+    pageProps: Object;
+}): JSX.Element => {
+    return <Component {...pageProps} />;
+};
+
+export default MyApp;
