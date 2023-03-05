@@ -1,4 +1,22 @@
-export const RootPage = () => {
+type User = {
+    id: string;
+};
+
+type Props = {
+    user: User;
+    user2: User;
+};
+
+type ButtonProps = {
+    mozi: string;
+};
+
+export const Button = (props: ButtonProps) => {
+    return <div>{props.mozi}</div>;
+};
+
+export const RootPage = (props: Props) => {
+    console.log(props);
     return (
         <div className="bg-brand-green-light max-w-sm min-h-screen mx-auto px-24 flex flex-col justify-center items-center">
             <h1 className="mb-16  text-5xl font-bold">コン研 - 図書館アプリ</h1>
