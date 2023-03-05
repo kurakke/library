@@ -2,17 +2,9 @@ type User = {
     id: string;
 };
 
-type Props = {
+export type Props = {
     user: User;
     user2: User;
-};
-
-type ButtonProps = {
-    mozi: string;
-};
-
-export const Button = (props: ButtonProps) => {
-    return <div>{props.mozi}</div>;
 };
 
 export const RootPage = (props: Props) => {
