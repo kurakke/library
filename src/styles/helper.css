@@ -1,0 +1,9 @@
+.lib-pointer {
+    cursor: pointer;
+    transition-duration: 200ms;
+    transition-property: opacity;
+}
+
+.lib-pointer:hover {
+    opacity: 0.5;
+}

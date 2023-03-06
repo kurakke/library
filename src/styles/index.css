@@ -1,4 +1,5 @@
-@import url('./palette.css');
+@import url("./helper.css");
+@import url("./palette.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

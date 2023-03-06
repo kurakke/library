@@ -10,4 +10,5 @@
 
 :root {
     color: var(--brand-green);
+    background-color: var(--gray-light);
 }
