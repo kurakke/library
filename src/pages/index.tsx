@@ -1,11 +1,11 @@
 import { GetServerSideProps, NextPage } from "next";
 import { Props, RootPage } from "~/ui/pages/Root";
 
-const IndexPage: NextPage<Props> = (props) => {
+const Page: NextPage<Props> = (props) => {
     return <RootPage user={props.user} user2={props.user2} />;
 };
 
-export default IndexPage;
+export default Page;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const props: Props = {
