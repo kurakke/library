@@ -13,25 +13,6 @@ module.exports = {
         return acc;
       }, {}),
     },
-    fontSize: {
-      none: '0px',
-      xs: '10px',
-      sm: '12px',
-      base: '14px',
-      lg: '16px',
-      xl: '18px',
-      '2xl': '20px',
-      '3xl': '24px',
-      '4xl': '28px',
-      '5xl': '32px',
-      '6xl': '36px',
-      '7xl': '42px',
-      '8xl': '48px',
-      '9xl': '54px',
-      '10xl': '64px',
-      '11xl': '72px',
-      '12xl': '80px',
-    },
     colors: {
       transparent: "transparent",
       /* ブランドカラー */
