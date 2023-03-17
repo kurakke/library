@@ -7,7 +7,7 @@ export type Props = {
 
 export const Header = ({ disableCtrls }: Props) => {
     return (
-        <div className="w-full flex justify-between items-center px-20 h-60 bg-white">
+        <div className="absolute w-full flex justify-between items-center px-20 h-60 bg-white">
             <Link href={PAGE_PATH.Root}>
                 <a>
                     <h1 className="text-lg font-black">コン研‐図書館</h1>
