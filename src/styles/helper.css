@@ -7,3 +7,7 @@
 .lib-pointer:hover {
     opacity: 0.5;
 }
+
+.lib-clip-upper-left {
+    clip-path: polygon(0 0, 0 100%, 100% 0);
+}
