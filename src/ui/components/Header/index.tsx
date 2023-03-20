@@ -1,13 +1,15 @@
 import Link from "next/link";
-import { PAGE_PATH } from "~/features/application/constants/page";
+import {PAGE_PATH} from "~/features/application/constants/page";
+import classNames from "classnames";
 
 export type Props = {
+    className?: string;
     disableCtrls?: boolean;
 };
 
-export const Header = ({ disableCtrls }: Props) => {
+export const Header = ({className, disableCtrls}: Props) => {
     return (
-        <div className="absolute w-full flex justify-between items-center px-20 h-60 bg-white">
+        <div className={classNames("w-full flex justify-between items-center px-20 h-60 bg-white", className)}>
             <Link href={PAGE_PATH.Root}>
                 <a>
                     <h1 className="text-lg font-black">コン研‐図書館</h1>

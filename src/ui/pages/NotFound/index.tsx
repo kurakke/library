@@ -5,7 +5,7 @@ import {DefaultLayout} from "~/ui/layouts/Default";
 export const NotFoundPage = () => {
     return (
         <DefaultLayout disableCtrls>
-            <div className="flex flex-col items-center pt-60 justify-center h-screen">
+            <div className="flex flex-col items-center mt-120">
                 <h1 className="mb-8 text-7xl font-black leading-none">404</h1>
                 <h2 className="mb-8 text-2xl font-black leading-none">NOT FOUND</h2>
                 <p className="mb-40 text-xs">

@@ -8,9 +8,11 @@ export type Props = {
 
 export const DefaultLayout = ({ children, disableCtrls }: Props) => {
     return (
-        <div className="relative bg-brand-green-light max-w-sm min-h-screen mx-auto flex flex-col items-center">
-            <Header disableCtrls={disableCtrls} />
-            {children}
+        <div className="relative bg-white max-w-sm mx-auto h-full">
+            <Header className="absolute" disableCtrls={disableCtrls} />
+            <div className="relative flex flex-col items-center pt-60 h-screen">
+                {children}
+            </div>
         </div>
     );
 };
