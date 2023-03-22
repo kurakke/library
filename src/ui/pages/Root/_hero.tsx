@@ -3,8 +3,8 @@ import {TriangleWrapper} from "~/ui/components/TriangleWrapper";
 export const Hero = () => {
     return(
     <TriangleWrapper>
-        <div className="w-full  px-16">
-            <div className="flex flex-col items-center mt-32 w-fit">
+        <div className="w-full pt-32 px-16">
+            <div className="flex flex-col items-center w-fit">
                 <div className="w-80 h-80 bg-expressive-red mb-12"/>
                 <h1 className="text-2xl font-bold text-white">コン研 - 図書館</h1>
             </div>
