@@ -14,9 +14,11 @@ export const RootPage = (props: Props) => {
     return (
         <DefaultLayout>
             <TriangleWrapper>
-                <div className="w-full px-16">
-                    <h1 className="mb-16  text-2xl font-bold text-brand-green-light">コン研 - 図書館アプリ</h1>
-                    <p className="mb-28 text-white text-sm lg:text-lg">XXXX</p>
+                <div className="w-full  px-16">
+                    <div className="flex flex-col items-center mt-32 w-fit">
+                        <div className="w-80 h-80 bg-expressive-red mb-12"/>
+                        <h1 className="text-2xl font-bold text-white">コン研 - 図書館</h1>
+                    </div>
                     <div className="w-full bg-brand-green-light rounded-2xl mt-32 p-12">
                         <div className="border-b border-dashed w-full justify-center px-8 pb-8 flex justify-between">
                             <p className="font-black">本の借り方を知る</p>
@@ -26,6 +28,7 @@ export const RootPage = (props: Props) => {
                             </div>
                         </div>
                     </div>
+                    <div className="w-full aspect-square bg-expressive-red rounded-3xl mt-12"/>
                 </div>
             </TriangleWrapper>
         </DefaultLayout>
