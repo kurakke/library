@@ -9,7 +9,7 @@ export type Props = {
 
 export const Header = ({className, disableCtrls}: Props) => {
     return (
-        <div className={classNames("w-full flex justify-between items-center px-20 h-60 bg-white", className)}>
+        <div className={classNames("flex justify-between items-center w-full px-20 h-60 bg-white", className)}>
             <Link href={PAGE_PATH.Root}>
                 <a>
                     <h1 className="text-lg font-black">コン研‐図書館</h1>
@@ -17,7 +17,7 @@ export const Header = ({className, disableCtrls}: Props) => {
             </Link>
             {!disableCtrls && (
                 <Link href={PAGE_PATH.SignIn}>
-                    <a className="text-xs font-black bg-brand-green text-white px-16 py-6 rounded lib-pointer">
+                    <a className="px-16 py-6 rounded lib-pointer bg-brand-green text-white text-xs font-black">
                         ログイン
                     </a>
                 </Link>
