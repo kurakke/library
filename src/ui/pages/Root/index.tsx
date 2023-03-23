@@ -1,6 +1,7 @@
 import {DefaultLayout} from "~/ui/layouts/Default";
 import {Hero} from "~/ui/pages/Root/_hero";
 import {Book} from "~/ui/components/Book/index"
+import {getBookList} from "~/features/book/usecases/getBookList";
 
 type User = {
     id: string;
@@ -11,21 +12,8 @@ export type Props = {
     user2: User;
 };
 
-const Book1 = [
-    {
-        title: "pya",
-        info: "wa-i",
-    },
-    {
-        title: "pyu",
-        info: "wa-u",
-    },
-    {
-        title: "pyo",
-        info: "wa-e",
-    },
-]
 export const RootPage = (props: Props) => {
+    const bookList = getBookList();
     return (
         <DefaultLayout>
             <Hero/>
@@ -33,8 +21,8 @@ export const RootPage = (props: Props) => {
                 <h2 className="font-black text-gray-dark mt-32">本を一覧で見る</h2>
 
                 {
-                    Book1.map((book, i) =>
-                        <li key={i}><Book book={book}/></li>
+                    bookList.list.map((book) =>
+                        <li key={book.id}><Book book={book}/></li>
                     )
                 }
 
