@@ -8,7 +8,7 @@ export type Props = {
 
 export const DefaultLayout = ({children, disableCtrls}: Props) => {
     return (
-        <div className="relative bg-white max-w-sm mx-auto min-h-screen">
+        <div className="relative bg-white max-w-smartphone-lg mx-auto min-h-screen">
             <Header className="absolute" disableCtrls={disableCtrls}/>
             <div className="relative pt-60">
                 {children}
