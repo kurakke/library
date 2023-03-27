@@ -2,6 +2,8 @@ import {DefaultLayout} from "~/ui/layouts/Default";
 import inRange from 'lodash/inRange'
 import {useMemo, useState} from 'react';
 import classNames from "classnames";
+import Link from "next/link";
+import {PAGE_PATH} from "~/features/application/constants/page";
 
 export const ProfilePage = () => {
     const [name, setName] = useState('')
@@ -9,12 +11,12 @@ export const ProfilePage = () => {
 
     const isValidName = useMemo(() => {
         return name.length > 0
-    },[name.length])
+    }, [name.length])
 
     const isValidStudentId = useMemo(() => {
         const pattern = /^([1-9]\d*|0)$/
-        const minStudentId = 1101;
-        const maxStudentId = 5551;
+        const minStudentId = 1101
+        const maxStudentId = 5551
         return pattern.test(studentId) && inRange(Number(studentId), minStudentId, maxStudentId)
     }, [studentId])
 
@@ -22,9 +24,7 @@ export const ProfilePage = () => {
         return studentId.length > 0 && !isValidStudentId
     }, [isValidStudentId, studentId.length])
 
-    console.log({isValidName,isValidStudentId})
     const handleChangeName: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        console.log(e.target.value)
         setName(e.target.value)
     }
 
@@ -35,9 +35,17 @@ export const ProfilePage = () => {
         setStudentId(e.target.value)
     }
 
+    const handleSubmitForm: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault()
+        if (!(isValidStudentId && isValidName)) {
+            return;
+        }
+        console.log({name, studentId})
+    }
+
     return (
         <DefaultLayout>
-            <div className="px-30 pt-12">
+            <form className="px-30 pt-12" onSubmit={handleSubmitForm}>
                 <h1 className="text-2xl font-black text-gray-dark">アカウント更新</h1>
                 <h2 className="mt-20 font-black text-gray-dark">氏名</h2>
                 <input
@@ -55,7 +63,7 @@ export const ProfilePage = () => {
                 </p>
                 <input
                     type="tel"
-                    className={classNames("mt-8 px-16 w-full h-40 rounded-2xl border border-gray-dark",{
+                    className={classNames("mt-8 px-16 w-full h-40 rounded-2xl border border-gray-dark", {
                         "text-expressive-red border-expressive-red": isDisplayStudentIdError
                     })}
                     value={studentId}
@@ -65,15 +73,21 @@ export const ProfilePage = () => {
                     <p className="text-xxs">アカウント情報はログイン済みのユーザーしか確認できません</p>
                 </div>
                 <div className="mt-20 flex flex-col items-center">
-                    <div className={classNames("flex justify-center items-center w-200 h-40 rounded font-black",{
-                        "bg-gray-light": !(isValidStudentId && isValidName),
-                        "bg-brand-green": isValidStudentId && isValidName
-                    })}>
-                        <p className="text-white">保存する</p>
-                    </div>
-                    <p className="mt-20 font-black text-gray-dark">キャンセル</p>
+                    <button
+                        type="submit"
+                        disabled={!(isValidStudentId && isValidName)}
+                        className={classNames("flex justify-center items-center w-200 h-40 rounded font-black text-white", {
+                            "bg-gray-light": !(isValidStudentId && isValidName),
+                            "bg-brand-green lib-pointer": isValidStudentId && isValidName
+                        })}
+                    >
+                        保存する
+                    </button>
+                    <Link href={PAGE_PATH.Root}>
+                        <a className="mt-20 font-black text-gray-dark lib-pointer">キャンセル</a>
+                    </Link>
                 </div>
-            </div>
+            </form>
         </DefaultLayout>
     )
 }
