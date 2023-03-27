@@ -1,3 +1,8 @@
 li {
     list-style-type: none;
 }
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
