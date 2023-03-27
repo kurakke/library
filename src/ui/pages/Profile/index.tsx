@@ -63,6 +63,7 @@ export const ProfilePage = () => {
                 </p>
                 <input
                     type="tel"
+                    name="student_id"
                     className={classNames("mt-8 px-16 w-full h-40 rounded-2xl border border-gray-dark", {
                         "text-expressive-red border-expressive-red": isDisplayStudentIdError
                     })}
