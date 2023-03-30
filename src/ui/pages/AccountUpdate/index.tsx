@@ -4,6 +4,7 @@ import {useMemo, useState} from 'react';
 import classNames from "classnames";
 import Link from "next/link";
 import {PAGE_PATH} from "~/features/application/constants/page";
+import {Heading} from "~/ui/components/Heading";
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState('')
@@ -46,7 +47,7 @@ export const AccountUpdatePage = () => {
     return (
         <DefaultLayout>
             <form className="px-30 pt-12" onSubmit={handleSubmitForm}>
-                <h1 className="text-2xl font-black text-gray-dark">アカウント更新</h1>
+                <Heading>アカウント更新</Heading>
                 <h2 className="mt-20 font-black text-gray-dark">氏名</h2>
                 <input
                     type="text"
