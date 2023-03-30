@@ -1,15 +1,13 @@
 import {DefaultLayout} from "~/ui/layouts/Default";
 import inRange from 'lodash/inRange'
 import {useMemo, useState} from 'react';
-import Link from "next/link";
-import {PAGE_PATH} from "~/features/application/constants/page";
 import {Heading} from "~/ui/components/Heading";
 import {Infomation} from "~/ui/components/Infomation";
 import {NameInput} from "~/ui/components/NameInput";
 import {StudentIdInput} from "~/ui/components/StudentIdInput";
 import {Button} from "~/ui/components/Button";
 
-export const AccountUpdatePage = () => {
+export const AccountCreatePage = () => {
     const [name, setName] = useState('')
     const [studentId, setStudentId] = useState('')
 
@@ -48,9 +46,9 @@ export const AccountUpdatePage = () => {
     }
 
     return (
-        <DefaultLayout>
+        <DefaultLayout disableCtrls>
             <form className="px-30 pt-12" onSubmit={handleSubmitForm}>
-                <Heading>アカウント更新</Heading>
+                <Heading>アカウント作成</Heading>
                 <NameInput name={name} onChange={handleChangeName}/>
                 <StudentIdInput
                     studentId={studentId}
@@ -65,11 +63,8 @@ export const AccountUpdatePage = () => {
                         type="submit"
                         disable={!(isValidName && isValidStudentId)}
                     >
-                        保存する
+                        登録する
                     </Button>
-                    <Link href={PAGE_PATH.Root}>
-                        <a className="mt-20 font-black text-gray-dark lib-pointer">キャンセル</a>
-                    </Link>
                 </div>
             </form>
         </DefaultLayout>
