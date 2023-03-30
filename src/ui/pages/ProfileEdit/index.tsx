@@ -53,6 +53,7 @@ export const ProfilePage = () => {
                     name="name"
                     className="mt-12 px-16 w-full h-40 rounded-2xl border border-gray-dark"
                     value={name}
+                    placeholder="高専花子"
                     onChange={handleChangeName}
                 />
                 <h2 className="mt-12 font-black text-gray-dark">学籍番号</h2>
@@ -68,6 +69,7 @@ export const ProfilePage = () => {
                         "text-expressive-red border-expressive-red": isDisplayStudentIdError
                     })}
                     value={studentId}
+                    placeholder="0000"
                     onChange={handleChangeStudentId}
                 />
                 <div className="flex justify-center items-center mt-24 w-full h-40 rounded-2xl bg-brand-green-light">
