@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import {PAGE_PATH} from "~/features/application/constants/page";
 
-export const ProfilePage = () => {
+export const AccountUpdatePage = () => {
     const [name, setName] = useState('')
     const [studentId, setStudentId] = useState('')
 

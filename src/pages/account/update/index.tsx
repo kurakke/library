@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import React from "react";
-import { ProfilePage } from "~/ui/pages/ProfileEdit";
+import { AccountUpdatePage } from "~/ui/pages/AccountUpdate";
 const Page: NextPage = () => {
-    return <ProfilePage />;
+    return <AccountUpdatePage />;
 };
 
 export default Page;
