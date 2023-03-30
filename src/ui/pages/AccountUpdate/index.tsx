@@ -6,6 +6,7 @@ import Link from "next/link";
 import {PAGE_PATH} from "~/features/application/constants/page";
 import {Heading} from "~/ui/components/Heading";
 import {Infomation} from "~/ui/components/Infomation";
+import {NameInput} from "~/ui/components/NameInput";
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState('')
@@ -26,8 +27,8 @@ export const AccountUpdatePage = () => {
         return studentId.length > 0 && !isValidStudentId
     }, [isValidStudentId, studentId.length])
 
-    const handleChangeName: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setName(e.target.value)
+    const handleChangeName = (result: string) => {
+        setName(result)
     }
 
     const handleChangeStudentId: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -49,15 +50,7 @@ export const AccountUpdatePage = () => {
         <DefaultLayout>
             <form className="px-30 pt-12" onSubmit={handleSubmitForm}>
                 <Heading>アカウント更新</Heading>
-                <h2 className="mt-20 font-black text-gray-dark">氏名</h2>
-                <input
-                    type="text"
-                    name="name"
-                    className="mt-12 px-16 w-full h-40 rounded-2xl border border-gray-dark"
-                    value={name}
-                    placeholder="高専花子"
-                    onChange={handleChangeName}
-                />
+                <NameInput name={name} onChange={handleChangeName}/>
                 <h2 className="mt-12 font-black text-gray-dark">学籍番号</h2>
                 <p className={classNames("mt-4 text-xs text-gray", {
                     "text-expressive-red": isDisplayStudentIdError
