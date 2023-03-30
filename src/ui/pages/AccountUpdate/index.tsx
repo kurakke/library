@@ -8,6 +8,7 @@ import {Heading} from "~/ui/components/Heading";
 import {Infomation} from "~/ui/components/Infomation";
 import {NameInput} from "~/ui/components/NameInput";
 import {StudentIdInput} from "~/ui/components/StudentIdInput";
+import {Button} from "~/ui/components/Button";
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState('')
@@ -32,7 +33,7 @@ export const AccountUpdatePage = () => {
         setName(result)
     }
 
-    const handleChangeStudentId= (result: string) => {
+    const handleChangeStudentId = (result: string) => {
         if (result.length >= 5) {
             return;
         }
@@ -61,16 +62,12 @@ export const AccountUpdatePage = () => {
                     <p className="text-xxs">アカウント情報はログイン済みのユーザーしか確認できません</p>
                 </Infomation>
                 <div className="mt-20 flex flex-col items-center">
-                    <button
+                    <Button
                         type="submit"
-                        disabled={!(isValidStudentId && isValidName)}
-                        className={classNames("flex justify-center items-center w-200 h-40 rounded font-black text-white", {
-                            "bg-gray-light": !(isValidStudentId && isValidName),
-                            "bg-brand-green lib-pointer": isValidStudentId && isValidName
-                        })}
+                        disable={!(isValidName && isValidStudentId)}
                     >
                         保存する
-                    </button>
+                    </Button>
                     <Link href={PAGE_PATH.Root}>
                         <a className="mt-20 font-black text-gray-dark lib-pointer">キャンセル</a>
                     </Link>
