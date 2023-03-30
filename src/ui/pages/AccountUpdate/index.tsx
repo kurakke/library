@@ -5,6 +5,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import {PAGE_PATH} from "~/features/application/constants/page";
 import {Heading} from "~/ui/components/Heading";
+import {Infomation} from "~/ui/components/Infomation";
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState('')
@@ -73,9 +74,9 @@ export const AccountUpdatePage = () => {
                     placeholder="0000"
                     onChange={handleChangeStudentId}
                 />
-                <div className="flex justify-center items-center mt-24 w-full h-40 rounded-2xl bg-brand-green-light">
+                <Infomation>
                     <p className="text-xxs">アカウント情報はログイン済みのユーザーしか確認できません</p>
-                </div>
+                </Infomation>
                 <div className="mt-20 flex flex-col items-center">
                     <button
                         type="submit"
