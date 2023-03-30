@@ -3,4 +3,5 @@ export const PAGE_PATH = {
     SignIn: "/signin",
     AccountUpdate: "/account/update",
     AccountCreate: "/account/create",
+    Unavailable: "/unavailable",
 };
