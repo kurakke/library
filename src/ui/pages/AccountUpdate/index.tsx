@@ -7,6 +7,7 @@ import {PAGE_PATH} from "~/features/application/constants/page";
 import {Heading} from "~/ui/components/Heading";
 import {Infomation} from "~/ui/components/Infomation";
 import {NameInput} from "~/ui/components/NameInput";
+import {StudentIdInput} from "~/ui/components/StudentIdInput";
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState('')
@@ -31,11 +32,11 @@ export const AccountUpdatePage = () => {
         setName(result)
     }
 
-    const handleChangeStudentId: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        if (e.target.value.length >= 5) {
+    const handleChangeStudentId= (result: string) => {
+        if (result.length >= 5) {
             return;
         }
-        setStudentId(e.target.value)
+        setStudentId(result)
     }
 
     const handleSubmitForm: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -51,20 +52,9 @@ export const AccountUpdatePage = () => {
             <form className="px-30 pt-12" onSubmit={handleSubmitForm}>
                 <Heading>アカウント更新</Heading>
                 <NameInput name={name} onChange={handleChangeName}/>
-                <h2 className="mt-12 font-black text-gray-dark">学籍番号</h2>
-                <p className={classNames("mt-4 text-xs text-gray", {
-                    "text-expressive-red": isDisplayStudentIdError
-                })}>
-                    {isDisplayStudentIdError ? "※ 半角数字４桁（数字４桁で入力してください)" : "※ 半角数字４桁"}
-                </p>
-                <input
-                    type="tel"
-                    name="student_id"
-                    className={classNames("mt-8 px-16 w-full h-40 rounded-2xl border border-gray-dark", {
-                        "text-expressive-red border-expressive-red": isDisplayStudentIdError
-                    })}
-                    value={studentId}
-                    placeholder="0000"
+                <StudentIdInput
+                    studentId={studentId}
+                    warning={isDisplayStudentIdError}
                     onChange={handleChangeStudentId}
                 />
                 <Infomation>
