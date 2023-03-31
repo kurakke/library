@@ -1,11 +1,11 @@
+import {Button} from "~/ui/components/Button";
 import {DefaultLayout} from "~/ui/layouts/Default";
-import inRange from 'lodash/inRange'
-import {useMemo, useState} from 'react';
 import {Heading} from "~/ui/components/Heading";
+import inRange from 'lodash/inRange'
 import {Infomation} from "~/ui/components/Infomation";
 import {NameInput} from "~/ui/components/NameInput";
 import {StudentIdInput} from "~/ui/components/StudentIdInput";
-import {Button} from "~/ui/components/Button";
+import {useMemo, useState} from 'react';
 
 export const AccountCreatePage = () => {
     const [name, setName] = useState('')

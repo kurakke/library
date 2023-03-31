@@ -1,4 +1,4 @@
-import { DefaultLayout } from "~/ui/layouts/Default";
+import {DefaultLayout} from "~/ui/layouts/Default";
 
 export const SignInPage = () => {
     return (

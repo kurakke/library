@@ -1,7 +1,7 @@
-import {DefaultLayout} from "~/ui/layouts/Default";
-import {Hero} from "~/ui/pages/Root/_hero";
 import {Book} from "~/ui/components/Book/index"
+import {DefaultLayout} from "~/ui/layouts/Default";
 import {getBookList} from "~/features/book/usecases/getBookList";
+import {Hero} from "~/ui/pages/Root/_hero";
 
 type User = {
     id: string;

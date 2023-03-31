@@ -1,13 +1,13 @@
-import {DefaultLayout} from "~/ui/layouts/Default";
-import inRange from 'lodash/inRange'
-import {useMemo, useState} from 'react';
-import Link from "next/link";
-import {PAGE_PATH} from "~/features/application/constants/page";
-import {Heading} from "~/ui/components/Heading";
-import {Infomation} from "~/ui/components/Infomation";
-import {NameInput} from "~/ui/components/NameInput";
-import {StudentIdInput} from "~/ui/components/StudentIdInput";
 import {Button} from "~/ui/components/Button";
+import {DefaultLayout} from "~/ui/layouts/Default";
+import {Heading} from "~/ui/components/Heading";
+import inRange from 'lodash/inRange'
+import {Infomation} from "~/ui/components/Infomation";
+import Link from "next/link";
+import {NameInput} from "~/ui/components/NameInput";
+import {PAGE_PATH} from "~/features/application/constants/page";
+import {StudentIdInput} from "~/ui/components/StudentIdInput";
+import {useMemo, useState} from 'react';
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState('')
