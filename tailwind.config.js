@@ -53,6 +53,7 @@ module.exports = {
                 dark: "var(--gray-dark)",
                 DEFAULT: "var(--gray-default)",
                 light: "var(--gray-light)",
+                bright: "var(--gray-bright)",
             },
             /* ベースカラー: ホワイト */
             white: {
