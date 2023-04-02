@@ -2,11 +2,14 @@ import SearchIcon from "~assets/svgs/search.svg";
 import Image from "next/image";
 import React, {useRef} from "react";
 
+
+
 export const SearchInput = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const handleKeyDown:React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-        if (e.key === 'Enter') {
-            console.log(inputRef.current.value);
+        const value = inputRef.current.value
+        if (e.key === 'Enter'&& value.length >= 1) {
+            alert(value);
         }
     }
     return (
