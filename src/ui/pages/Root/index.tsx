@@ -39,6 +39,7 @@ export const RootPage = (props: Props) => {
                     bookList.list.map((book) =>
                         <li key={book.id}><Book book={book}/></li>
                     )
+
                 }
 
             </div>

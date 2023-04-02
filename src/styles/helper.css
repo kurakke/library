@@ -12,3 +12,20 @@
     clip-path: polygon(0 0, 0 100%, 100% 0);
 }
 
+.lib-tag {
+    clip-path: polygon(0 50%,10px 100%,100% 100%,100% 0,10px 0);
+    padding: 0 20px;
+    position: relative;
+}
+
+.lib-tag:after {
+    content: "";
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 5px;
+    width :5px;
+    height: 5px;
+    background-color: var(--white-default);
+    border-radius: 50%;
+}
