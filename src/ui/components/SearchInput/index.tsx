@@ -8,7 +8,7 @@ export const SearchInput = () => {
                 <Image src={SearchIcon}/>
                 <input
                     type="text"
-                    search="search"
+                    name="search"
                     className="px-12 bg-gray-bright flex-grow"
                     placeholder="データベース設計"
                 />
