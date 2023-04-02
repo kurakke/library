@@ -2,14 +2,16 @@ import SearchIcon from "~assets/svgs/search.svg";
 import Image from "next/image";
 import React, {useRef} from "react";
 
+export type Props = {
+    onSearch: (name: string) => void;
+}
 
-
-export const SearchInput = () => {
+export const SearchInput = ({onSearch}:Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const handleKeyDown:React.KeyboardEventHandler<HTMLInputElement> = (e) => {
         const value = inputRef.current.value
         if (e.key === 'Enter'&& value.length >= 1) {
-            alert(value);
+            onSearch(value);
         }
     }
     return (

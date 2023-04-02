@@ -3,7 +3,9 @@ import {DefaultLayout} from "~/ui/layouts/Default";
 import {getBookList} from "~/features/book/usecases/getBookList";
 import {Hero} from "~/ui/pages/Root/_hero";
 import {Heading2} from "~/ui/components/Heading2";
+import {PAGE_PATH} from "~/features/application/constants/page";
 import {SearchInput} from "~/ui/components/SearchInput";
+import {useRouter} from "next/router";
 
 type User = {
     id: string;
@@ -15,13 +17,23 @@ export type Props = {
 };
 
 export const RootPage = (props: Props) => {
+    const router = useRouter()
+    const handleSearch = (result: string) => {
+        router.push({
+            pathname: PAGE_PATH.Books,
+            query: {
+                keyword: result
+            }
+        })
+    }
+
     const bookList = getBookList();
     return (
         <DefaultLayout>
             <Hero/>
             <Heading2 className="mt-40 px-16">検索して本を探す</Heading2>
             <div className="w-full px-16">
-                <SearchInput/>
+                <SearchInput onSearch={handleSearch}/>
                 <Heading2 className="mt-32">本を一覧で見る</Heading2>
                 {
                     bookList.list.map((book) =>
