@@ -4,9 +4,10 @@ import {getBookList} from "~/features/book/usecases/getBookList";
 import {Hero} from "~/ui/pages/Root/_hero";
 import {Heading2} from "~/ui/components/Heading2";
 import {PAGE_PATH} from "~/features/application/constants/page";
-import {useEffect,useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {SearchInput} from "~/ui/components/SearchInput";
 import {useRouter} from "next/router";
+import {BookEntity} from "~/features/book/entities";
 
 type User = {
     id: string;
@@ -18,23 +19,26 @@ export type Props = {
 };
 
 export const RootPage = (props: Props) => {
+    const [books, setBooks] = useState<BookEntity[]>([]);
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                console.log(entry);
+            if (!entry.isIntersecting) {
+                return;
             }
+            const next = getBookList()
+            setBooks(prev => [...prev, ...next.list])
         })
-        if(ref.current === null) {
+        if (ref.current === null) {
             return;
         }
         //useRefで参照したdivタグを監視対象に追加する
         observer.observe(ref.current);
-        const { current } = ref;
+        const {current} = ref;
         return () => {
             observer.unobserve(current);
         };
-    },[]);
+    }, []);
 
 
     const router = useRouter()
@@ -47,7 +51,7 @@ export const RootPage = (props: Props) => {
         })
     }
 
-    const bookList = getBookList();
+
     return (
         <DefaultLayout>
             <Hero/>
@@ -56,12 +60,12 @@ export const RootPage = (props: Props) => {
                 <SearchInput onSearch={handleSearch}/>
                 <Heading2 className="mt-32">本を一覧で見る</Heading2>
                 {
-                    bookList.list.map((book) =>
+                    books.map((book) =>
                         <li key={book.id}><Book book={book}/></li>
                     )
 
                 }
-            <div ref={ref}></div>
+                <div ref={ref}>xxx</div>
             </div>
         </DefaultLayout>
     );
