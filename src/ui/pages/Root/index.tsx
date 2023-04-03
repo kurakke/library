@@ -4,6 +4,7 @@ import {getBookList} from "~/features/book/usecases/getBookList";
 import {Hero} from "~/ui/pages/Root/_hero";
 import {Heading2} from "~/ui/components/Heading2";
 import {PAGE_PATH} from "~/features/application/constants/page";
+import {useEffect,useRef} from 'react';
 import {SearchInput} from "~/ui/components/SearchInput";
 import {useRouter} from "next/router";
 
@@ -17,6 +18,25 @@ export type Props = {
 };
 
 export const RootPage = (props: Props) => {
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                console.log(entry);
+            }
+        })
+        if(ref.current === null) {
+            return;
+        }
+        //useRefで参照したdivタグを監視対象に追加する
+        observer.observe(ref.current);
+        const { current } = ref;
+        return () => {
+            observer.unobserve(current);
+        };
+    },[]);
+
+
     const router = useRouter()
     const handleSearch = (result: string) => {
         router.push({
@@ -41,7 +61,7 @@ export const RootPage = (props: Props) => {
                     )
 
                 }
-
+            <div ref={ref}></div>
             </div>
         </DefaultLayout>
     );
