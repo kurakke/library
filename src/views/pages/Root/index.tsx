@@ -14,6 +14,7 @@ import {getServerSideProps} from "~/views/pages/Root/beforeRender";
 export const RootPage = (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
+
     const [books, setBooks] = useState<BookEntity[]>([]);
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {

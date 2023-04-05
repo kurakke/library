@@ -2,14 +2,16 @@ import {DefaultLayout} from "~/ui/layouts/Default";
 import {Heading} from "~/ui/components/Heading";
 import {Heading2} from "~/ui/components/Heading2";
 import {Book} from "~/ui/components/Book";
+import {InferGetServerSidePropsType} from "next";
 import {getBookList} from "~/features/book/usecases/getBookList";
 import SettingIcon from "~assets/svgs/setting.svg";
 import Image from "next/image";
 import React from "react";
+import {getServerSideProps} from "~/views/pages/Account/beforeRender";
 
-export const AccountPage = () => {
-    const bookList = getBookList()
-    const returned = getBookList()
+export const AccountPage = (
+    {rental, returned}: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
     return (
         <DefaultLayout disableCtrls>
             <div className="px-30 font-black">
@@ -25,7 +27,7 @@ export const AccountPage = () => {
                 <div className="pb-12 mt-12 border-gray-light border-b">
                     <Heading2>利用中の書籍</Heading2>
                     {
-                        bookList.list.map((book) =>
+                        rental.list.map((book) =>
                             <li key={book.id}><Book book={book}/></li>
                         )
                     }
