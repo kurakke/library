@@ -1,24 +1,19 @@
-import {Book} from "~/ui/components/Book/index"
+import {Book} from "~/ui/components/Book";
 import {DefaultLayout} from "~/ui/layouts/Default";
 import {getBookList} from "~/features/book/usecases/getBookList";
-import {Hero} from "~/ui/pages/Root/_hero";
+import {Hero} from "~/views/pages/Root/_hero";
 import {Heading2} from "~/ui/components/Heading2";
 import {PAGE_PATH} from "~/features/application/constants/page";
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from "react";
 import {SearchInput} from "~/ui/components/SearchInput";
 import {useRouter} from "next/router";
 import {BookEntity} from "~/features/book/entities";
+import {InferGetServerSidePropsType} from "next";
+import {getServerSideProps} from "~/views/pages/Root/beforeRender";
 
-type User = {
-    id: string;
-};
-
-export type Props = {
-    user: User;
-    user2: User;
-};
-
-export const RootPage = (props: Props) => {
+export const RootPage = (
+    props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
     const [books, setBooks] = useState<BookEntity[]>([]);
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -26,9 +21,9 @@ export const RootPage = (props: Props) => {
             if (!entry.isIntersecting) {
                 return;
             }
-            const next = getBookList()
-            setBooks(prev => [...prev, ...next.list])
-        })
+            const next = getBookList();
+            setBooks((prev) => [...prev, ...next.list]);
+        });
         if (ref.current === null) {
             return;
         }
@@ -40,17 +35,15 @@ export const RootPage = (props: Props) => {
         };
     }, []);
 
-
-    const router = useRouter()
+    const router = useRouter();
     const handleSearch = (result: string) => {
         router.push({
             pathname: PAGE_PATH.Books,
             query: {
-                keyword: result
-            }
-        })
-    }
-
+                keyword: result,
+            },
+        });
+    };
 
     return (
         <DefaultLayout>
@@ -59,12 +52,11 @@ export const RootPage = (props: Props) => {
             <div className="w-full px-16">
                 <SearchInput onSearch={handleSearch}/>
                 <Heading2 className="mt-32">本を一覧で見る</Heading2>
-                {
-                    books.map((book) =>
-                        <li key={book.id}><Book book={book}/></li>
-                    )
-
-                }
+                {books.map((book) => (
+                    <li key={book.id}>
+                        <Book book={book}/>
+                    </li>
+                ))}
                 <div ref={ref}>xxx</div>
             </div>
         </DefaultLayout>

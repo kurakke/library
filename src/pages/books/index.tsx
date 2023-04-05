@@ -1,5 +1,5 @@
 import {NextPage} from "next";
-import {BooksPage} from "~/ui/pages/Books";
+import {BooksPage} from "~/views/pages/Books";
 import React from "react";
 
 const Page: NextPage = () => {
