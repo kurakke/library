@@ -1,4 +1,4 @@
-import SearchIcon from "~assets/svgs/search.svg";
+import SearchIcon from "~/assets/svgs/search.svg";
 import Image from "next/image";
 import React, {useRef} from "react";
 
