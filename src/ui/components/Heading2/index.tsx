@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 export type Props = {
     children: ReactNode;
-    className: string;
+    className?: string;
 }
 
 export const Heading2 = ({children, className}: Props) => {
