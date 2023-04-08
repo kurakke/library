@@ -9,7 +9,7 @@ import React from "react";
 import {getServerSideProps} from "~/views/pages/Account/beforeRender";
 
 export const AccountPage = (
-    {rental, returned}: InferGetServerSidePropsType<typeof getServerSideProps>
+    {rental, returned, user}: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
     return (
         <DefaultLayout disableCtrls>
@@ -17,9 +17,9 @@ export const AccountPage = (
                 <Heading>アカウント情報</Heading>
                 <div className="flex mt-32 pb-12 border-gray-light border-b">
                     <div className="w-56 h-56 rounded-full bg-expressive-red"/>
-                    <div className="mx-12 flex-grow">
-                        <div className="font-xs text-gray-dark">学籍番号:3450</div>
-                        <div className="text-gray-dark">高専花子</div>
+                    <div className="mx-12 flex-grow text-gray-dark">
+                        <div className="font-xs">学籍番号:{user.studentId}</div>
+                        <div>{user.name}</div>
                     </div>
                     <Image src={SettingIcon}/>
                 </div>
