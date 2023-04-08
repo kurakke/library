@@ -1,9 +1,9 @@
 import {getBookList} from "~/features/book/usecases/getBookList";
 import {getUser} from "~/features/user/usecases/getUser";
 
-export const getServerSideProps = async () => {
-    const rental = getBookList();
-    const returned = getBookList();
+export const getServerSideProps = async() => {
+    const rental = await getBookList();
+    const returned = await getBookList();
     const user = getUser();
     return {
         props: {

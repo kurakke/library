@@ -19,12 +19,17 @@ export const RootPage = (
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (!entry.isIntersecting) {
-                return;
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                const fn = async () => {
+                    const next = await getBookList();
+                    setBooks((prev) => [...prev, ...next.list]);
+                }
+                fn();
             }
-            const next = getBookList();
-            setBooks((prev) => [...prev, ...next.list]);
-        });
+        )
+
         if (ref.current === null) {
             return;
         }
