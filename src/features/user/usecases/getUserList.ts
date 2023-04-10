@@ -1,7 +1,7 @@
 import {UserEntity} from "~/features/user/entities";
 import {ItemList} from "~/features/_type";
+import {sleep} from "~/utils/sleep";
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve,ms))
 export const getUserList = async (): Promise<ItemList<UserEntity>> => {
     const list: UserEntity[] = [
         {

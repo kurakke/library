@@ -1,6 +1,6 @@
 import {UserEntity} from "~/features/user/entities";
+import {sleep} from "~/utils/sleep";
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 export const getUser = async (): Promise<UserEntity> => {
     await sleep(2000)
     return (

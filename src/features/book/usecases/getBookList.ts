@@ -1,7 +1,7 @@
 import {BookEntity} from "~/features/book/entities";
 import {ItemList} from "~/features/_type";
+import {sleep} from "~/utils/sleep";
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 export const getBookList = async (): Promise<ItemList<BookEntity>> => {
     const list: BookEntity[] = [
         {
