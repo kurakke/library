@@ -19,7 +19,7 @@ export const AccountPage = (
                     <div className="w-56 h-56 rounded-full bg-expressive-red"/>
                     <div className="mx-12 flex-grow text-gray-dark">
                         <div className="font-xs">学籍番号:{user.studentId}</div>
-                        <div>{user.name}</div>
+                        <div>{user.fullName}</div>
                     </div>
                     <Image src={SettingIcon}/>
                 </div>

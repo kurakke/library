@@ -1,10 +1,12 @@
 import {UserEntity} from "~/features/user/entities";
 
-export const getUser = (): UserEntity => {
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+export const getUser = async (): Promise<UserEntity> => {
+    await sleep(2000)
     return (
         {
             id: "aaa",
-            name: "高専花子",
+            fullName: "高専花子",
             mail: "next13kowai@gmail.com",
             privilegeRole: "admin",
             studentId: "3450",

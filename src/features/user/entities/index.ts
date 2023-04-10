@@ -1,6 +1,6 @@
 export type UserEntity = {
     id: string;
-    name: string;
+    fullName: string;
     mail: string;
     privilegeRole: string;
     studentId: string;

@@ -1,16 +1,18 @@
 import {UserEntity} from "~/features/user/entities";
 import {ItemList} from "~/features/_type";
 
-export const getUserList = (): ItemList<UserEntity> => {
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve,ms))
+export const getUserList = async (): Promise<ItemList<UserEntity>> => {
     const list: UserEntity[] = [
         {
             id: "aaa",
-            name: "高専花子",
-            mail: "next13kowai@gmail.com",
+            fullName: "高専花子",
+            mail: "next12dayatta@gmail.com",
             privilegeRole: "admin",
             studentId: "3450",
         },
     ]
+    await sleep(2000)
     return (
         {
             list,
