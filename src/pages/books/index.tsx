@@ -1,9 +1,5 @@
-import {NextPage} from "next";
 import {BooksPage} from "~/views/pages/Books";
-import React from "react";
+import {getServerSideProps} from "~/views/pages/Books/beforeRender";
 
-const Page: NextPage = () => {
-    return <BooksPage/>;
-};
-
-export default Page;
+export default BooksPage;
+export {getServerSideProps};

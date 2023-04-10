@@ -2,11 +2,14 @@ import {Header} from "~/ui/components/Header";
 import {SearchInput} from "~/ui/components/SearchInput";
 import {DefaultLayout} from "~/ui/layouts/Default";
 import {Book} from "~/ui/components/Book";
-import {getBookList} from "~/features/book/usecases/getBookList";
 import {PAGE_PATH} from "~/features/application/constants/page";
 import {useRouter} from "next/router";
+import {getServerSideProps} from "~/views/pages/Books/beforeRender";
+import {InferGetServerSidePropsType} from "next";
 
-export const BooksPage = () => {
+export const BooksPage = (
+    {bookList}: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
     const router = useRouter()
     const handleSearch = (result: string) => {
         router.push({
@@ -16,7 +19,6 @@ export const BooksPage = () => {
             }
         })
     }
-    const bookList = getBookList();
     return (
         <div>
             <DefaultLayout>
