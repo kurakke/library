@@ -63,7 +63,9 @@ export const RootPage = (
                         <Book book={book}/>
                     </li>
                 ))}
-                <div ref={ref}>xxx</div>
+                <div className="flex justify-center py-36">
+                    <div ref={ref} className="lib-loader"/>
+                </div>
             </div>
         </DefaultLayout>
     );
