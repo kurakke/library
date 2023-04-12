@@ -30,6 +30,22 @@
     border-radius: 50%;
 }
 
+.lib-tab {
+    height: 40px;
+    position: relative;
+}
+
+.lib-tab:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 40px;
+    right: 0px;
+    border-radius: 8px;
+    background-color: var(--brand-green);
+}
+
 :root {
     --loader-base-size: 36px;
     --loader-color-a100: #478468;
