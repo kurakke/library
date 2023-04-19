@@ -8,6 +8,11 @@ import {getServerSideProps} from "~/views/pages/Books/beforeRender";
 import {InferGetServerSidePropsType} from "next";
 import classNames from "classnames";
 
+
+enum DisplayStatus {
+    All,
+    CanRent
+}
 export const BooksPage = (
     {bookList}: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
@@ -21,7 +26,7 @@ export const BooksPage = (
         })
     }
 
-    const [count,setCount] = useState<string>("");
+    const [displayStatus, setDisplayStatus] = useState<DisplayStatus>(DisplayStatus.All);
 
     return (
         <div>
@@ -29,9 +34,21 @@ export const BooksPage = (
                 <div className="px-16 mt-16">
                     <SearchInput onSearch={handleSearch}/>
                     <div className="mt-16">
-                        <div className="lib-tab flex justify-around items-center w-full h-40 rounded-lg border-2 border-solid font-black">
-                            <button onClick={() => setCount("全て")} className={classNames({"text-white":count==="全て"})}>全て</button>
-                            <button onClick={() => setCount("貸出可能")}>貸出可能</button>
+                        <div
+                            className="lib-tab flex justify-around items-center w-full h-40 rounded-lg border-2 border-solid font-black"
+                            data-status = {displayStatus}
+                        >
+                            <button
+                                onClick={() => setDisplayStatus(DisplayStatus.All)}
+                                className={classNames("z-10 transition-all duration-500",{"text-white": displayStatus === DisplayStatus.All})}
+                            >
+                                全て
+                            </button>
+                            <button onClick={() => setDisplayStatus(DisplayStatus.CanRent)}
+                                    className={classNames("z-10 transition-all duration-500",{"text-white":displayStatus === DisplayStatus.CanRent})}
+                            >
+                                貸出可能
+                            </button>
                         </div>
                         {
                             bookList.list.map((book) =>

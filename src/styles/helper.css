@@ -36,14 +36,20 @@
 }
 
 .lib-tab:after {
-    z-index: -1;
     content: "";
     position: absolute;
     width: 50%;
     height: 40px;
-    right: 0px;
+    left: 0px;
+    transform: translateX(0);
     border-radius: 8px;
     background-color: var(--brand-green);
+    transition: all 0.5s 0s ease;
+}
+
+.lib-tab[data-status='1']:after {
+    transform: translateX(100%);
+
 }
 
 :root {
