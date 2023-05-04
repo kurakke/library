@@ -17,7 +17,7 @@ export const Header = ({className, disableCtrls}: Props) => {
             </Link>
             {!disableCtrls && (
                 <Link href={PAGE_PATH.SignIn}>
-                    <a className="px-16 py-6 rounded lib-pointer bg-brand-green text-white text-xs font-black">
+                    <a className="z-10 px-16 py-6 rounded lib-pointer bg-brand-green text-white text-xs font-black">
                         ログイン
                     </a>
                 </Link>
