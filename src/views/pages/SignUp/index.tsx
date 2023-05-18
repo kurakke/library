@@ -1,55 +1,48 @@
 import { useEffect, useState } from 'react';
-import { Auth, Hub } from 'aws-amplify';
+import { Amplify, Auth, Hub } from 'aws-amplify';
+import { awsConfiguration } from 'awsConfiguration';
+
+Amplify.configure({ Auth: awsConfiguration });
 
 export const SignUpPage = () => {
-    const [user, setUser] = useState<any | null>(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    useEffect(() => {
-        Hub.listen('auth', ({ payload: { event, data } }) => {
-            switch (event) {
-                case 'signIn':
-                case 'cognitoHostedUI':
-                    getUser().then(userData => setUser(userData));
-                    break;
-                case 'signOut':
-                    setUser(null);
-                    break;
-                case 'signIn_failure':
-                case 'cognitoHostedUI_failure':
-                    console.log('Sign in failure', data);
-                    break;
-            }
-        });
-
-        getUser().then(userData => setUser(userData));
-    }, []);
-
-    const getUser = async () => {
+    const handleSignUp = async () => {
         try {
-            const userData = await Auth.currentAuthenticatedUser();
-            // デバッグ用
-            Auth.currentSession().then((data) => {
-                console.log(`token: ${data.getIdToken().getJwtToken()}`);
+            await Auth.signUp({
+                username: email,
+                password,
+                attributes: {
+                    email
+                }
             });
-            console.log(userData);
-            return userData;
-        } catch (e) {
-            return console.log('Not signed in');
+            onSignUpSuccess();
+        } catch (error) {
+            console.log('Error signing up: ', error);
         }
-    }
+    };
 
-    return user ? (
+    const onSignUpSuccess = () => {
+        console.log('Sign up successful!');
+    };
+
+    return (
         <div>
-            <p>サインイン済み</p>
-            <p>ユーザー名: {user.username}</p>
-            <button onClick={() => Auth.signOut()}>Sign Out</button>
-        </div>
-    ) : (
-        <div>
-            <p>
-                サインインする
-            </p>
-            <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
+            <h1>Sign Up</h1>
+            <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={handleSignUp}>Sign Up</button>
         </div>
     );
-}
+};
