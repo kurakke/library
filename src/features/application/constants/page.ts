@@ -1,6 +1,6 @@
 export const PAGE_PATH = {
     Books:"/books",
-    Bookone:"/books/[bookId]",
+    BookOne:"/books/[bookId]",
     Root: "/",
     SignIn: "/signin",
     Account:"/user",

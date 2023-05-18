@@ -7,6 +7,8 @@ import {useRouter} from "next/router";
 import {getServerSideProps} from "~/views/pages/Books/beforeRender";
 import {InferGetServerSidePropsType} from "next";
 import {Tab, DisplayStatus} from "~/ui/components/Tab";
+import {createDynamicUrl} from "~/features/application/utils/url";
+import Link from "next/link";
 
 
 export const BooksPage = (
@@ -23,7 +25,7 @@ export const BooksPage = (
     }
 
     const [displayStatus, setDisplayStatus] = useState<DisplayStatus>(DisplayStatus.All);
-    const handleChangeTab = (result:DisplayStatus) => {
+    const handleChangeTab = (result: DisplayStatus) => {
         setDisplayStatus(result)
     }
 
@@ -36,7 +38,13 @@ export const BooksPage = (
                         <Tab displayStatus={displayStatus} onChange={handleChangeTab}/>
                         {
                             bookList.list.map((book) =>
-                                <li key={book.id}><Book book={book}/></li>
+                                <Link href={createDynamicUrl(PAGE_PATH.BookOne, {
+                                    bookId: book.id,
+                                })}>
+                                    <a>
+                                        <li key={book.id}><Book book={book}/></li>
+                                    </a>
+                                </Link>
                             )
                         }
                     </div>

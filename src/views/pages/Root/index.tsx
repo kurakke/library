@@ -10,6 +10,8 @@ import {useRouter} from "next/router";
 import {BookEntity} from "~/features/book/entities";
 import {InferGetServerSidePropsType} from "next";
 import {getServerSideProps} from "~/views/pages/Root/beforeRender";
+import Link from "next/link";
+import {createDynamicUrl} from "~/features/application/utils/url";
 
 export const RootPage = (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -58,11 +60,17 @@ export const RootPage = (
             <div className="w-full px-16">
                 <SearchInput onSearch={handleSearch}/>
                 <Heading2 className="mt-32">本を一覧で見る</Heading2>
-                {books.map((book) => (
-                    <li key={book.id}>
-                        <Book book={book}/>
-                    </li>
-                ))}
+                {
+                    books.map((book) =>
+                        <Link href={createDynamicUrl(PAGE_PATH.BookOne, {
+                            bookId: book.id,
+                        })}>
+                            <a>
+                                <li key={book.id}><Book book={book}/></li>
+                            </a>
+                        </Link>
+                    )
+                }
                 <div className="flex justify-center py-36">
                     <div ref={ref} className="lib-loader"/>
                 </div>
