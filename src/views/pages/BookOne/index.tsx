@@ -5,18 +5,16 @@ import {BookEntity} from "~/features/book/entities";
 import {Heading} from "~/ui/components/Heading";
 import React from "react";
 import {Profile} from "~/ui/components/Profile";
+import {InferGetServerSidePropsType} from "next";
+import {getServerSideProps} from "~/views/pages/BookOne/beforeRender";
 
-// export type Props = {
-//     book: BookEntity;
-// };
-export const BookOne = () => {
+
+export const BookOne = (
+    {userList,book}:InferGetServerSidePropsType<typeof getServerSideProps>,
+) => {
     const router = useRouter();
     const { bookId }  = router.query;
-    const book:BookEntity = {
-        id: "1000",
-        title: "pa",
-        info:"pya",
-    };
+    console.log(bookId);
 
     return (
             <DefaultLayout>
@@ -26,9 +24,11 @@ export const BookOne = () => {
                 <div className="mt-20 mx-16 border border-gray-light"/>
                 <div className="mt-16 mx-16">
                 <Heading>過去の利用者</Heading>
-                    <Profile/>
-                    <Profile/>
-                    <Profile/>
+                    {
+                    userList.list.map((user) =>
+                    <li key={user.id}><Profile user={user}/></li>
+                    )
+                    }
                 </div>
             </DefaultLayout>
     );
