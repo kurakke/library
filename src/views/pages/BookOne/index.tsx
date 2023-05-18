@@ -9,6 +9,7 @@ import {InferGetServerSidePropsType} from "next";
 import {getServerSideProps} from "~/views/pages/BookOne/beforeRender";
 
 
+
 export const BookOne = (
     {userList,book}:InferGetServerSidePropsType<typeof getServerSideProps>,
 ) => {
