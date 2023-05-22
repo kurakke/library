@@ -2,23 +2,17 @@ import { useEffect, useState } from 'react';
 import { Amplify, Auth, Hub } from 'aws-amplify';
 import { awsConfiguration } from '../../../features/auth/config/awsConfiguration'
 import { Credentials } from '@aws-amplify/core'
-
-Amplify.Logger.LOG_LEVEL = 'DEBUG'
-Amplify.register(Auth);
-Amplify.register(Credentials);
-Amplify.configure({ Auth: awsConfiguration });
+import { useAuth } from '~/features/auth/hooks/useAuth';
 
 export const SignUpPage = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const auth = useAuth();
 
     const handleSignUp = async () => {
         try {
-            const newUser = await Auth.signUp({
-                username: email,
-                password: password,
-            });
+            const newUser = await auth.signUp(email, password);
             console.log('auth!!!!!!');
             console.log(newUser);
             onSignUpSuccess();
