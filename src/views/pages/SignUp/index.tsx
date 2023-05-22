@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Amplify, Auth, Hub } from 'aws-amplify';
-import { awsConfiguration } from 'awsConfiguration';
+import { awsConfiguration } from '../../../../awsConfiguration'
+import '@aws-amplify/ui-react/styles.css';
 
-Amplify.configure({ Auth: awsConfiguration });
+Amplify.configure(awsConfiguration);
+Auth.configure(awsConfiguration);
 
 export const SignUpPage = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSignUp = async () => {
         try {
-            await Auth.signUp({
+            const newUser = await Auth.signUp({
                 username: email,
-                password,
-                attributes: {
-                    email
-                }
+                password: password,
             });
+            console.log('auth!!!!!!');
+            console.log(newUser);
             onSignUpSuccess();
         } catch (error) {
             console.log('Error signing up: ', error);
@@ -26,23 +28,40 @@ export const SignUpPage = () => {
     const onSignUpSuccess = () => {
         console.log('Sign up successful!');
     };
+    const handleName = (event) => {
+        setName(event.target.value);
+    }
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
+    }
+    const handlePassword = (event) => {
+        setPassword(event.target.value);
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('post');
+        handleSignUp();
+    }
 
     return (
         <div>
-            <h1>Sign Up</h1>
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleSignUp}>Sign Up</button>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>
+                            email
+                            <input type="text" name='email' value={email} onChange={handleEmail} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            password
+                            <input type="password" name='password' value={password} onChange={handlePassword} />
+                        </label>
+                    </div>
+                    <button type='submit'>submit</button>
+                </form>
+            </div>
         </div>
     );
 };
