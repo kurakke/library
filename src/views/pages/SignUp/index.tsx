@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Amplify, Auth, Hub } from 'aws-amplify';
 import { awsConfiguration } from '../../../../awsConfiguration'
-import '@aws-amplify/ui-react/styles.css';
 
-Amplify.configure(awsConfiguration);
-Auth.configure(awsConfiguration);
+Amplify.configure({ Auth: { awsConfiguration } });
+// Auth.configure(awsConfiguration);
 
 export const SignUpPage = () => {
     const [name, setName] = useState('');
