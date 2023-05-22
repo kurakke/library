@@ -10,21 +10,29 @@ export type Props = {
     displayStatus: DisplayStatus;
     onChange: (displayStatus: DisplayStatus) => void;
 }
-
 export const Tab = ({displayStatus, onChange}: Props) => {
+
+    const handleClick = () => {
+        if (displayStatus === DisplayStatus.All) {
+            onChange(DisplayStatus.CanRent)
+        }
+        if (displayStatus === DisplayStatus.CanRent) {
+            onChange(DisplayStatus.All)
+        }
+    }
 
     return (
         <div
             className="lib-tab flex justify-around items-center w-full h-40 rounded-lg border-2 border-solid font-black"
             data-status={displayStatus}
+            onClick={handleClick}
         >
             <button
-                onClick={() => onChange(DisplayStatus.All)}
                 className={classNames("z-10 transition-all duration-500", {"text-white": displayStatus === DisplayStatus.All})}
             >
                 全て
             </button>
-            <button onClick={() => onChange(DisplayStatus.CanRent)}
+            <button
                     className={classNames("z-10 transition-all duration-500", {"text-white": displayStatus === DisplayStatus.CanRent})}
             >
                 貸出可能
