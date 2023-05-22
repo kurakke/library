@@ -25,7 +25,7 @@ export const getBookList = async (): Promise<ItemList<BookEntity>> => {
             info: "wan",
         }
     ]
-    await sleep(2000)
+    await sleep(500)
     return (
         {
             list,

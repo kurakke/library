@@ -23,7 +23,7 @@ export const getUserList = async (): Promise<ItemList<UserEntity>> => {
             returnAt:"2023-05-15 18:07:11",
         }
     ]
-    await sleep(2000)
+    await sleep(500)
     return (
         {
             list,

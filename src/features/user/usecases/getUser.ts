@@ -2,7 +2,7 @@ import {UserEntity} from "~/features/user/entities";
 import {sleep} from "~/utils/sleep";
 
 export const getUser = async (): Promise<UserEntity> => {
-    await sleep(2000)
+    await sleep(500)
     return (
         {
             id: "aaa",
