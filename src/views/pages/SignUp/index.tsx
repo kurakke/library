@@ -5,9 +5,9 @@ import { Credentials } from '@aws-amplify/core'
 import { useAuth } from '~/features/auth/hooks/useAuth';
 
 export const SignUpPage = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [name, setName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     const auth = useAuth();
 
     const handleSignUp = async () => {
