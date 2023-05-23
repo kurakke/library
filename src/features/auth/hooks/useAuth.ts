@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { Amplify, Auth, Hub } from 'aws-amplify';
-import { awsConfiguration } from '../../../features/auth/config/awsConfiguration'
+import { awsConfiguration } from '../config/awsConfiguration'
 import { Credentials } from '@aws-amplify/core'
 
 Amplify.Logger.LOG_LEVEL = 'DEBUG'
