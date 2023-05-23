@@ -56,7 +56,10 @@ export const useProvideAuth = (): UseAuth => {
 
     const signUp = async (username: string, password: string) => {
         try {
-            await Auth.signUp({ username, password });
+            await Auth.signUp({
+                username: username,
+                password: password
+            });
             setUsername(username);
             setPassword(password);
             return { success: true, message: '' };
