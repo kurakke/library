@@ -55,13 +55,13 @@ export const useProvideAuth = (): UseAuth => {
 
     const signUp = async (username: string, password: string) => {
         try {
-            await Auth.signUp({
+            const user = await Auth.signUp({
                 username: username,
                 password: password
             });
             setUsername(username);
             setPassword(password);
-            return { success: true, message: '' };
+            return { success: true, message: user.userSub };
         } catch (error) {
             return {
                 success: false,
