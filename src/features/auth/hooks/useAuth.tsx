@@ -3,7 +3,6 @@ import { Amplify, Auth, Hub } from 'aws-amplify';
 import { awsConfiguration } from '../config/awsConfiguration'
 import { Credentials } from '@aws-amplify/core'
 
-Amplify.Logger.LOG_LEVEL = 'DEBUG'
 Amplify.register(Auth);
 Amplify.register(Credentials);
 Amplify.configure({ Auth: awsConfiguration });
@@ -25,10 +24,10 @@ interface Result {
 
 const authContext = createContext({} as UseAuth);
 
-// export const ProvideAuth = ({ children }) => {
-//     const auth = useProvideAuth();
-//     return <authContext.Provider value={ auth }> { children } < /authContext.Provider>;
-// };
+export const ProvideAuth = ({ children }) => {
+    const auth = useProvideAuth();
+    return <authContext.Provider value={auth}> {children} </authContext.Provider>;
+};
 
 export const useAuth = () => {
     return useContext(authContext);
