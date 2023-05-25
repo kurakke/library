@@ -22,7 +22,13 @@ export const SignUpPage = () => {
     };
 
     const onSignUpSuccess = () => {
-        console.log('Sign up successful!');
+        fetch(process.env.NEXT_PUBLIC_BACKEND_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: auth.username, name: name, mail: email, studentNumber: 0 }),
+        })
     };
     const handleName = (event) => {
         setName(event.target.value);
