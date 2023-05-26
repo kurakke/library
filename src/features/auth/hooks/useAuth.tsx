@@ -11,6 +11,7 @@ interface UseAuth {
     isLoading: boolean;
     isAuthenticated: boolean;
     username: string;
+    userId: string;
     signUp: (username: string, password: string) => Promise<Result>;
     confirmSignUp: (verificationCode: string) => Promise<Result>;
     signIn: (username: string, password: string) => Promise<Result>;
@@ -38,6 +39,7 @@ export const useProvideAuth = (): UseAuth => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [userId, setUserId] = useState('');
 
     useEffect(() => {
         Auth.currentAuthenticatedUser()
@@ -61,7 +63,8 @@ export const useProvideAuth = (): UseAuth => {
             });
             setUsername(username);
             setPassword(password);
-            return { success: true, message: user.userSub };
+            setUserId(user.userSub);
+            return { success: true, message: '認証に成功しました' };
         } catch (error) {
             return {
                 success: false,
@@ -89,7 +92,8 @@ export const useProvideAuth = (): UseAuth => {
             const result = await Auth.signIn(username, password);
             setUsername(result.username);
             setIsAuthenticated(true);
-            return { success: true, message: '' };
+            setUserId(result.attributes.sub);
+            return { success: true, message: '認証に成功しました' };
         } catch (error) {
             return {
                 success: false,
@@ -103,6 +107,7 @@ export const useProvideAuth = (): UseAuth => {
             await Auth.signOut();
             setUsername('');
             setIsAuthenticated(false);
+            setUserId('');
             return { success: true, message: '' };
         } catch (error) {
             return {
@@ -116,6 +121,7 @@ export const useProvideAuth = (): UseAuth => {
         isLoading,
         isAuthenticated,
         username,
+        userId,
         signUp,
         confirmSignUp,
         signIn,
