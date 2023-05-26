@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Amplify, Auth, Hub } from 'aws-amplify';
-import { awsConfiguration } from '../../../features/auth/config/awsConfiguration'
-import { Credentials } from '@aws-amplify/core'
+import React, { useState } from 'react';
 import { useAuth } from '~/features/auth/hooks/useAuth';
 
 export const SignUpPage = () => {
