@@ -75,12 +75,6 @@ export const SignUpPage = () => {
                         </label>
                     </div>
                     <button type='submit'>submit</button>
-                    <div onClick={() => {
-                        console.log(auth.username);
-
-                    }}>
-                        name
-                    </div>
                 </form>
             </div>
         </div>
