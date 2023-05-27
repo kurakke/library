@@ -10,24 +10,12 @@ export const SignUpPage = () => {
 
     const handleSignUp = async () => {
         try {
-            const newUser = await auth.signUp(email, password);
-            console.log('auth!!!!!!');
-            console.log(newUser);
-            onSignUpSuccess();
+            await auth.signUp({ name: name, email: email, studentNumber: studentNumber, password: password });
         } catch (error) {
             console.log('Error signing up: ', error);
         }
     };
 
-    const onSignUpSuccess = () => {
-        fetch(process.env.NEXT_PUBLIC_BACKEND_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: auth.username, name: name, mail: email, studentNumber: 0 }),
-        })
-    };
     const handleName = (event) => {
         setName(event.target.value);
     }

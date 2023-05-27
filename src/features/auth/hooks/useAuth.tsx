@@ -6,13 +6,17 @@ import { Credentials } from '@aws-amplify/core'
 Amplify.register(Auth);
 Amplify.register(Credentials);
 Amplify.configure({ Auth: awsConfiguration });
-
 interface UseAuth {
     isLoading: boolean;
     isAuthenticated: boolean;
     username: string;
     userId: string;
-    signUp: (username: string, password: string) => Promise<Result>;
+    signUp: (user: {
+        name: string;
+        email: string;
+        studentNumber: string;
+        password: string;
+    }) => Promise<Result>;
     confirmSignUp: (verificationCode: string) => Promise<Result>;
     signIn: (username: string, password: string) => Promise<Result>;
     signOut: () => void;
@@ -21,6 +25,14 @@ interface UseAuth {
 interface Result {
     success: boolean;
     message: string;
+}
+
+interface User {
+    id: string;
+    name: string;
+    mail: string;
+    role: string;
+    studentNumber: number;
 }
 
 const authContext = createContext({} as UseAuth);
@@ -55,16 +67,26 @@ export const useProvideAuth = (): UseAuth => {
             });
     }, []);
 
-    const signUp = async (username: string, password: string) => {
+    const signUp: UseAuth["signUp"] = async (params) => {
         try {
-            const user = await Auth.signUp({
-                username: username,
-                password: password
+            const result = await Auth.signUp({
+                username: params.email,
+                password: params.password
             });
-            setUsername(username);
-            setPassword(password);
-            setUserId(user.userSub);
-            return { success: true, message: '認証に成功しました' };
+            if (!result.user) {
+                throw new Error('ユーザー登録に失敗しました。');
+            }
+            const user = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: result.userSub, name: params.name, email: params.email, studentNumber: params.studentNumber }),
+            }).then<User>((res) => {
+                return res.json();
+            })
+            setUserId(user.id);
+            return { success: true, message: 'ユーザー登録に成功しました。' };
         } catch (error) {
             return {
                 success: false,
