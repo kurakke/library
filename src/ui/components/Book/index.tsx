@@ -12,7 +12,7 @@ export const Book = ({book}: Props) => {
                 <h3 className="font-black">{book.title}</h3>
                 <div className="lib-tag bg-brand-green text-white">タグ</div>
             </div>
-            <p className="text-xs">{book.info}</p>
+            <p className="text-xs">{book.title}</p>
         </div>
     );
 };
