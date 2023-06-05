@@ -21,7 +21,7 @@ export const getBookList = async ({ size = 99, page = 1 }: { size?: number, page
             size: result.size,
             page: result.page,
             total: result.total,
-            isReached: result.isReached, 
+            isReached: result.isReached,
         }
     )
 }
