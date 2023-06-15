@@ -87,6 +87,7 @@ export const useProvideAuth = (): UseAuth => {
             })
             setUserId(user.id);
             setIsAuthenticated(true);
+            setPassword(params.password);
             return { success: true, message: 'ユーザー登録に成功しました。' };
         } catch (error) {
             return {
