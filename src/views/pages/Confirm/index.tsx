@@ -11,7 +11,7 @@ export const ConfirmPage = () => {
     const handleConfirm = () => {
         auth.confirmSignUp(confirmCode);
     }
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         console.log('submit');
         handleConfirm();
