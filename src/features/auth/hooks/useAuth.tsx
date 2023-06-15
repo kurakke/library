@@ -53,19 +53,19 @@ export const useProvideAuth = (): UseAuth => {
     const [password, setPassword] = useState('');
     const [userId, setUserId] = useState('');
 
-    useEffect(() => {
-        Auth.currentAuthenticatedUser()
-            .then((result) => {
-                setUsername(result.username);
-                setIsAuthenticated(true);
-                setIsLoading(false);
-            })
-            .catch(() => {
-                setUsername('');
-                setIsAuthenticated(false);
-                setIsLoading(false);
-            });
-    }, []);
+    // useEffect(() => {
+    //     Auth.currentAuthenticatedUser()
+    //         .then((result) => {
+    //             setUsername(result.username);
+    //             setIsAuthenticated(true);
+    //             setIsLoading(false);
+    //         })
+    //         .catch(() => {
+    //             setUsername('');
+    //             setIsAuthenticated(false);
+    //             setIsLoading(false);
+    //         });
+    // }, []);
 
     const signUp: UseAuth["signUp"] = async (params) => {
         try {
@@ -86,6 +86,7 @@ export const useProvideAuth = (): UseAuth => {
                 return res.json();
             })
             setUserId(user.id);
+            setUsername(user.name);
             setIsAuthenticated(true);
             setPassword(params.password);
             return { success: true, message: 'ユーザー登録に成功しました。' };
@@ -99,8 +100,10 @@ export const useProvideAuth = (): UseAuth => {
 
     const confirmSignUp = async (verificationCode: string) => {
         try {
-            await Auth.confirmSignUp(username, verificationCode);
-            const result = await signIn(username, password);
+            console.log('userid' + userId);
+
+            await Auth.confirmSignUp(userId, verificationCode);
+            const result = await signIn(userId, password);
             setPassword('');
             return result;
         } catch (error) {

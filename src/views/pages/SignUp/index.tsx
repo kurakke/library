@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '~/features/auth/hooks/useAuth';
+import { NextRouter, useRouter } from 'next/router';
+import { PAGE_PATH } from "~/features/application/constants/page";
 
 export const SignUpPage = () => {
     const [name, setName] = useState<string>('');
@@ -7,10 +9,14 @@ export const SignUpPage = () => {
     const [password, setPassword] = useState<string>('');
     const [studentNumber, setStudentNumber] = useState<string>('');
     const auth = useAuth();
+    const router = useRouter();
 
     const handleSignUp = async () => {
         try {
-            await auth.signUp({ name: name, email: email, studentNumber: studentNumber, password: password });
+            const result = await auth.signUp({ name: name, email: email, studentNumber: studentNumber, password: password });
+            if (result.success) {
+                router.push(PAGE_PATH.Confirm);
+            }
         } catch (error) {
             console.log('Error signing up: ', error);
         }
