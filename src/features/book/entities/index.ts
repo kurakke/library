@@ -1,5 +1,8 @@
 export type BookEntity = {
     id: string;
+    isbn: string;
     title: string;
-    info: string;
+    publicationYear: number;
+    owner: string;
+    thumbnailUrl?: string;
 };

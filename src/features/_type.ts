@@ -7,4 +7,6 @@ export type ItemList<Item> = {
     page: number;
     // 取得可能なアイテムの総数
     total: number;
+    // 最終ページまで到達したかどうか
+    isReached: boolean;
 }

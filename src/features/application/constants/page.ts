@@ -3,6 +3,8 @@ export const PAGE_PATH = {
     BookOne:"/books/[bookId]",
     Root: "/",
     SignIn: "/signin",
+    SignUp: "/signup",
+    Confirm: "/confirm",
     Account:"/user",
     AccountUpdate: "/user/update",
     AccountCreate: "/user/create",

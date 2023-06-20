@@ -1,37 +1,27 @@
-import {BookEntity} from "~/features/book/entities";
-import {ItemList} from "~/features/_type";
-import {sleep} from "~/utils/sleep";
+import { BookEntity } from "~/features/book/entities";
+import { ItemList } from "~/features/_type";
+import { sleep } from "~/utils/sleep";
 
-export const getBookList = async (): Promise<ItemList<BookEntity>> => {
-    const list: BookEntity[] = [
-        {
-            id: "aaa",
-            title: "pya",
-            info: "wa-i",
+export const getBookList = async ({ size = 99, page = 1 }: { size?: number, page?: number } = {}): Promise<ItemList<BookEntity>> => {
+    const url = new URL(process.env.NEXT_PUBLIC_BACKEND_URL + '/books/');
+    const params = new URLSearchParams({ size: size.toString(), page: page.toString() });
+    url.search = params.toString();
+
+    const result = await fetch(url.href, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        {
-            id: "bbb",
-            title: "pyu",
-            info: "wa-u",
-        },
-        {
-            id: "ccc",
-            title: "pyo",
-            info: "wa-e",
-        },
-        {
-            id: "ddd",
-            title: "pyi",
-            info: "wan",
-        }
-    ]
-    await sleep(500)
+    }).then<ItemList<BookEntity>>((res) => {
+        return res.json();
+    })
     return (
         {
-            list,
-            size: 10,
-            page: 1,
-            total: 3,
+            list: result.list,
+            size: result.size,
+            page: result.page,
+            total: result.total,
+            isReached: result.isReached,
         }
     )
 }

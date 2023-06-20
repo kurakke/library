@@ -15,7 +15,7 @@ export const SearchInput = ({onSearch}:Props) => {
         }
     }
     return (
-        <div　className="flex items-center">
+        <div className="flex items-center">
             <div className="flex items-center w-full px-12 h-40 rounded-lg bg-gray-bright">
                 <Image src={SearchIcon}/>
                 <input
