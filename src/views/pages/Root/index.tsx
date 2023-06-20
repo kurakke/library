@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import { BookEntity } from "~/features/book/entities";
 import { InferGetServerSidePropsType } from "next";
 import { getServerSideProps } from "~/views/pages/Root/beforeRender";
+import Link from "next/link";
+import {createDynamicUrl} from "~/features/application/utils/url";
 
 export const RootPage = (
     props: InferGetServerSidePropsType<typeof getServerSideProps>

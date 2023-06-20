@@ -4,4 +4,6 @@ export type UserEntity = {
     mail: string;
     privilegeRole: string;
     studentId: string;
+    updateAt: string;
+    returnAt: string;
 };

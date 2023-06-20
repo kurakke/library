@@ -6,13 +6,11 @@ import {PAGE_PATH} from "~/features/application/constants/page";
 import {useRouter} from "next/router";
 import {getServerSideProps} from "~/views/pages/Books/beforeRender";
 import {InferGetServerSidePropsType} from "next";
-import classNames from "classnames";
+import {Tab, DisplayStatus} from "~/ui/components/Tab";
+import {createDynamicUrl} from "~/features/application/utils/url";
+import Link from "next/link";
 
 
-enum DisplayStatus {
-    All,
-    CanRent
-}
 export const BooksPage = (
     {bookList}: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
@@ -27,6 +25,9 @@ export const BooksPage = (
     }
 
     const [displayStatus, setDisplayStatus] = useState<DisplayStatus>(DisplayStatus.All);
+    const handleChangeTab = (result: DisplayStatus) => {
+        setDisplayStatus(result)
+    }
 
     return (
         <div>
@@ -34,25 +35,16 @@ export const BooksPage = (
                 <div className="px-16 mt-16">
                     <SearchInput onSearch={handleSearch}/>
                     <div className="mt-16">
-                        <div
-                            className="lib-tab flex justify-around items-center w-full h-40 rounded-lg border-2 border-solid font-black"
-                            data-status = {displayStatus}
-                        >
-                            <button
-                                onClick={() => setDisplayStatus(DisplayStatus.All)}
-                                className={classNames("z-10 transition-all duration-500",{"text-white": displayStatus === DisplayStatus.All})}
-                            >
-                                全て
-                            </button>
-                            <button onClick={() => setDisplayStatus(DisplayStatus.CanRent)}
-                                    className={classNames("z-10 transition-all duration-500",{"text-white":displayStatus === DisplayStatus.CanRent})}
-                            >
-                                貸出可能
-                            </button>
-                        </div>
+                        <Tab displayStatus={displayStatus} onChange={handleChangeTab}/>
                         {
                             bookList.list.map((book) =>
-                                <li key={book.id}><Book book={book}/></li>
+                                <Link href={createDynamicUrl(PAGE_PATH.BookOne, {
+                                    bookId: book.id,
+                                })}>
+                                    <a>
+                                        <li key={book.id}><Book book={book}/></li>
+                                    </a>
+                                </Link>
                             )
                         }
                     </div>

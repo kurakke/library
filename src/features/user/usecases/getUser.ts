@@ -2,7 +2,7 @@ import {UserEntity} from "~/features/user/entities";
 import {sleep} from "~/utils/sleep";
 
 export const getUser = async (): Promise<UserEntity> => {
-    await sleep(2000)
+    await sleep(500)
     return (
         {
             id: "aaa",
@@ -10,6 +10,8 @@ export const getUser = async (): Promise<UserEntity> => {
             mail: "next13kowai@gmail.com",
             privilegeRole: "admin",
             studentId: "3450",
+            updateAt:"2022-07-14 04:11:56",
+            returnAt:"2022-08-15 12:30:09",
         }
     )
 }
