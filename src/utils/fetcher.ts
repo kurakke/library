@@ -1,11 +1,11 @@
 export const fetcher = (
-  input: RequestInfo | URL,
-  init?: Omit<RequestInit, "headers">
+    input: RequestInfo | URL,
+    init?: Omit<RequestInit, "headers">
 ) => {
-  return fetch(input, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+    return fetch(input, {
+        ...init,
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 };
