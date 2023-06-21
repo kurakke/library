@@ -9,12 +9,13 @@ import { InferGetServerSidePropsType } from "next";
 import { getServerSideProps } from "~/views/pages/BookOne/beforeRender";
 
 export const BookOne = ({
-    userList,
     book,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const router = useRouter();
     const { bookId } = router.query;
     console.log(bookId);
+
+    console.log(book);
 
     return (
         <DefaultLayout>
@@ -24,7 +25,7 @@ export const BookOne = ({
             <div className="mt-20 mx-16 border border-gray-light" />
             <div className="mt-16 mx-16">
                 <Heading>過去の利用者</Heading>
-                {userList.list.map((user) => (
+                {book.lendRecords.map((user) => (
                     <li key={user.id}>
                         <Profile user={user} />
                     </li>
