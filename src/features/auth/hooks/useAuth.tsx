@@ -1,26 +1,26 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Amplify, Auth, Hub } from 'aws-amplify';
+//import { Amplify, Auth, Hub } from 'aws-amplify';
 import { awsConfiguration } from '../config/awsConfiguration'
-import { Credentials } from '@aws-amplify/core'
+//import { Credentials } from '@aws-amplify/core'
 
-Amplify.register(Auth);
-Amplify.register(Credentials);
-Amplify.configure({ Auth: awsConfiguration });
-interface UseAuth {
-    isLoading: boolean;
-    isAuthenticated: boolean;
-    username: string;
-    userId: string;
-    signUp: (user: {
-        name: string;
-        email: string;
-        studentNumber: string;
-        password: string;
-    }) => Promise<Result>;
-    confirmSignUp: (verificationCode: string) => Promise<Result>;
-    signIn: (username: string, password: string) => Promise<Result>;
-    signOut: () => void;
-}
+//Amplify.register(Auth);
+// Amplify.register(Credentials);
+// Amplify.configure({ Auth: awsConfiguration });
+// interface UseAuth {
+//     isLoading: boolean;
+//     isAuthenticated: boolean;
+//     username: string;
+//     userId: string;
+//     signUp: (user: {
+//         name: string;
+//         email: string;
+//         studentNumber: string;
+//         password: string;
+//     }) => Promise<Result>;
+//     confirmSignUp: (verificationCode: string) => Promise<Result>;
+//     signIn: (username: string, password: string) => Promise<Result>;
+//     signOut: () => void;
+// }
 
 interface Result {
     success: boolean;
