@@ -4,6 +4,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { PAGE_PATH } from "~/features/application/constants/page";
 import { DefaultLayout } from "~/ui/layouts/Default";
 import {Heading} from "~/ui/components/Heading";
+import {NameInput} from "~/ui/components/NameInput";
 
 export const SignUpPage = () => {
     const [name, setName] = useState<string>('');
@@ -23,6 +24,7 @@ export const SignUpPage = () => {
             console.log('Error signing up: ', error);
         }
     };
+
 
     const handleName = (event) => {
         setName(event.target.value);
@@ -49,33 +51,29 @@ export const SignUpPage = () => {
             <div　className="text-gray-dark font-black">
                 <form onSubmit={handleSubmit}>
                     <div className="mt-20 mb-12">
+                        <div>メールアドレス</div>
                         <label>
-                            メールアドレス
-                            <input type="text" name='email' value={email} onChange={handleEmail} />
+                            <input className="w-370 h-40 px-10 border rounded" type="text" name='email' value={email} onChange={handleEmail} />
                         </label>
-                        <div className="px-20 h-40 border rounded"/>
                     </div>
-                    <div className="mb-12">
-                        <label>
-                            学籍番号
-                            <input type="text" name='studentnumber' value={studentNumber} onChange={handleStudentNumber} />
-                        </label>
+                    <div　className="mb-20">
+                        <div>学籍番号</div>
                         <div className="text-xxs text-gray">※数字四桁</div>
-                        <div className="px-20 h-40 border rounded"/>
+                        <label>
+                            <input className="w-370 h-40 px-10 border rounded" type="text" name='studentnumber' value={studentNumber} onChange={handleStudentNumber} />
+                        </label>
+                    </div>
+                    <div className="flex flex-col mb-20">
+                        <div>氏名</div>
+                        <label>
+                            <input className="w-370 h-40 px-10 border rounded" type="text" name='name' value={name} onChange={handleName} />
+                        </label>
                     </div>
                     <div className="mb-12">
+                        <div>パスワード</div>
                         <label>
-                            名前
-                            <input type="text" name='name' value={name} onChange={handleName} />
+                            <input className="w-370 h-40 px-10 border rounded" type="password" name='password' value={password} onChange={handlePassword} />
                         </label>
-                        <div className="px-20 h-40 border rounded"/>
-                    </div>
-                    <div className="mb-12">
-                        <label>
-                            パスワード
-                            <input type="password" name='password' value={password} onChange={handlePassword} />
-                        </label>
-                        <div className="px-20 h-40 border rounded"/>
                     </div>
                     <div className="flex justify-center mt-20">
                         <button className="w-200 h-40 bg-brand-green text-white rounded" type='submit'>保存</button>
