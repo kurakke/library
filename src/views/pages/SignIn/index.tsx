@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DefaultLayout } from "~/ui/layouts/Default";
 import React from "react";
 import { useAuth } from "~/features/auth/hooks/useAuth";
+import {Heading} from "~/ui/components/Heading";
 
 export const SignInPage = () => {
     const [email, setEmail] = useState<string>('')
@@ -30,25 +31,31 @@ export const SignInPage = () => {
     }
     return (
         <DefaultLayout disableCtrls>
-            <h1 className="mb-16  text-5xl font-bold">Signin</h1>
-            <p className="mb-28 text-white text-sm lg:text-lg">XXXX</p>
+            <div className="flex flex-col justify-center px-30">
+            <Heading>ログイン</Heading>
+                <div　className="text-gray-dark font-black">
             <div>
                 <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className="mt-20 mb-12">
+                        <div>メールアドレス</div>
                         <label>
-                            email
-                            <input type="text" name='email' value={email} onChange={handleEmail} />
+                            <input className="w-370 h-40 px-10 border rounded"　type="text" name='email' value={email} onChange={handleEmail} />
                         </label>
                     </div>
-                    <div>
+                    <div　className="mt-20 mb-12">
+                        <div>パスワード</div>
                         <label>
-                            password
-                            <input type="password" name='password' value={password} onChange={handlePassword} />
+                            <input className="w-370 h-40 px-10 border rounded"　type="password" name='password' value={password} onChange={handlePassword} />
                         </label>
                     </div>
-                    <button type='submit'>submit</button>
+                    <div className="flex justify-center mt-20">
+                        <button className="w-200 h-40 bg-brand-green text-white rounded" type='submit'>保存</button>
+                    </div>
                 </form>
             </div>
+            </div>
+            </div>
+
         </DefaultLayout>
     );
 };
