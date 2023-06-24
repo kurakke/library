@@ -5,17 +5,29 @@ import { Book } from "~/ui/components/Book";
 import { InferGetServerSidePropsType } from "next";
 import SettingIcon from "~/assets/svgs/setting.svg";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getServerSideProps } from "~/views/pages/Account/beforeRender";
+import { getLendRecord } from "~/features/user/usecases/getLendRecord";
+import { useAuth } from "~/features/auth/hooks/useAuth";
 
-export const AccountPage = ({
-    user,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    const rental = user.lendRecords.filter((lendRecord) => {
+export const AccountPage = ({}: InferGetServerSidePropsType<
+    typeof getServerSideProps
+>) => {
+    const [user, setUser] = useState(null);
+    const { userId } = useAuth();
+
+    useEffect(() => {
+        (async () => {
+            const data = await getLendRecord(userId);
+            setUser(data);
+        })();
+    }, []);
+
+    const rental = user?.lendRecords.filter((lendRecord) => {
         return lendRecord.returnedDate === null;
     });
 
-    const returned = user.lendRecords.filter((lendRecord) => {
+    const returned = user?.lendRecords.filter((lendRecord) => {
         return lendRecord.returnedDate !== null;
     });
 
@@ -27,15 +39,15 @@ export const AccountPage = ({
                     <div className="w-56 h-56 rounded-full bg-expressive-red" />
                     <div className="mx-12 flex-grow text-gray-dark">
                         <div className="font-xs">
-                            学籍番号:{user.studentNumber}
+                            学籍番号:{user?.studentNumber}
                         </div>
-                        <div>{user.name}</div>
+                        <div>{user?.name}</div>
                     </div>
                     <Image src={SettingIcon} />
                 </div>
                 <div className="pb-12 mt-12 border-gray-light border-b">
                     <Heading2>利用中の書籍</Heading2>
-                    {rental.map((lendRecord) => (
+                    {rental?.map((lendRecord) => (
                         <li key={lendRecord.book.id}>
                             <Book book={lendRecord.book} />
                         </li>
@@ -43,7 +55,7 @@ export const AccountPage = ({
                 </div>
                 <div className="mt-12">
                     <Heading2>返却済みの書籍</Heading2>
-                    {returned.map((lendRecord) => (
+                    {returned?.map((lendRecord) => (
                         <li key={lendRecord.book.id}>
                             <Book book={lendRecord.book} />
                         </li>
