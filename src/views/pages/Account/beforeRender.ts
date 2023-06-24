@@ -1,16 +1,4 @@
-import {getBookList} from "~/features/book/usecases/getBookList";
-import {getUser} from "~/features/user/usecases/getUser";
+import { GetServerSideProps } from "next";
+import { getLendRecord } from "~/features/user/usecases/getLendRecord";
 
-export const getServerSideProps = async () => {
-    const [rental, returned, user] = await Promise.all([
-        getBookList(), getBookList(), getUser()
-    ]);
-
-    return {
-        props: {
-            rental,
-            returned,
-            user
-        },
-    };
-};
+export const getServerSideProps = async () => {};
