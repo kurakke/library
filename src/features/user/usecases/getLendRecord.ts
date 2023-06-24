@@ -11,9 +11,9 @@ export const getLendRecord = async (userId) => {
 
     // TODO: うまく取得できなかった過場合の仮の処理なので最終的に削除が必要
     if (res.status === 404) {
-        console.log("user not found");
+        console.error("user not found");
         const mockUrl = new URL(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/lendRecord/146566d6-11fe-4079-af81-47f9d6a5c5c5`
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/lendRecord/4dfdedbc-7c5b-475a-8445-02a9ddbe0181`
         );
 
         const mockRes = await fetcher(mockUrl.href, {

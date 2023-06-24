@@ -21,7 +21,7 @@ export const AccountPage = ({}: InferGetServerSidePropsType<
             const data = await getLendRecord(userId);
             setUser(data);
         })();
-    }, []);
+    }, [userId]);
 
     const rental = user?.lendRecords.filter((lendRecord) => {
         return lendRecord.returnedDate === null;
