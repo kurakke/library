@@ -45,9 +45,10 @@ export const BooksPage = ({
                                 href={createDynamicUrl(PAGE_PATH.BookOne, {
                                     bookId: book.id,
                                 })}
+                                key={book.id}
                             >
                                 <a>
-                                    <li key={book.id}>
+                                    <li>
                                         <Book book={book} />
                                     </li>
                                 </a>
