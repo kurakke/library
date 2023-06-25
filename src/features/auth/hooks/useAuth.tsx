@@ -11,15 +11,22 @@ interface UseAuth {
     isAuthenticated: boolean;
     username: string;
     userId: string;
+    userEmail: string;
+    password: string;
     signUp: (user: {
         name: string;
         email: string;
         studentNumber: string;
         password: string;
     }) => Promise<Result>;
-    confirmSignUp: (verificationCode: string) => Promise<Result>;
+    confirmSignUp: (
+        verificationCode: string,
+        email: string,
+        password: string
+    ) => Promise<Result>;
     signIn: (username: string, password: string) => Promise<Result>;
     signOut: () => void;
+    resendSignUp: (email: string) => Promise<Result>;
 }
 
 interface Result {
@@ -54,6 +61,7 @@ export const useProvideAuth = (): UseAuth => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [userId, setUserId] = useState("");
+    const [userEmail, setUserEmail] = useState("");
 
     useEffect(() => {
         Auth.currentAuthenticatedUser()
@@ -62,11 +70,14 @@ export const useProvideAuth = (): UseAuth => {
                 setIsAuthenticated(true);
                 setIsLoading(false);
                 setUserId(result.attributes.sub);
+                setUserEmail(result.attributes.email);
+                console.log(result);
             })
             .catch(() => {
                 setUsername("");
                 setIsAuthenticated(false);
                 setIsLoading(false);
+                setUserEmail("");
             });
     }, []);
 
@@ -100,8 +111,10 @@ export const useProvideAuth = (): UseAuth => {
             setUsername(user.name);
             setIsAuthenticated(true);
             setPassword(params.password);
+            setUserEmail(user.mail);
             return { success: true, message: "ユーザー登録に成功しました。" };
         } catch (error) {
+            console.error(error);
             return {
                 success: false,
                 message: "認証に失敗しました。",
@@ -109,15 +122,18 @@ export const useProvideAuth = (): UseAuth => {
         }
     };
 
-    const confirmSignUp = async (verificationCode: string) => {
+    const confirmSignUp = async (
+        verificationCode: string,
+        email: string,
+        password: string
+    ) => {
         try {
-            console.log("userid" + userId);
-
-            await Auth.confirmSignUp(userId, verificationCode);
-            const result = await signIn(userId, password);
+            await Auth.confirmSignUp(email, verificationCode);
+            const result = await signIn(email, password);
             setPassword("");
             return result;
         } catch (error) {
+            console.error(error);
             return {
                 success: false,
                 message: "認証に失敗しました。",
@@ -131,8 +147,10 @@ export const useProvideAuth = (): UseAuth => {
             setUsername(result.username);
             setIsAuthenticated(true);
             setUserId(result.attributes.sub);
+            setUserEmail(result.attributes.email);
             return { success: true, message: "認証に成功しました" };
         } catch (error) {
+            console.error(error);
             return {
                 success: false,
                 message: "認証に失敗しました。",
@@ -146,6 +164,7 @@ export const useProvideAuth = (): UseAuth => {
             setUsername("");
             setIsAuthenticated(false);
             setUserId("");
+            setUserEmail("");
             return { success: true, message: "" };
         } catch (error) {
             return {
@@ -155,14 +174,27 @@ export const useProvideAuth = (): UseAuth => {
         }
     };
 
+    const resendSignUp = async (email: string) => {
+        try {
+            await Auth.resendSignUp(email);
+            return { success: true, message: "確認コードを再送しました" };
+        } catch (e) {
+            console.error(e);
+            return { success: true, message: "確認コードの再送に失敗しました" };
+        }
+    };
+
     return {
         isLoading,
         isAuthenticated,
         username,
         userId,
+        userEmail,
+        password,
         signUp,
         confirmSignUp,
         signIn,
         signOut,
+        resendSignUp,
     };
 };
