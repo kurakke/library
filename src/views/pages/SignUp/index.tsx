@@ -79,7 +79,7 @@ export const SignUpPage = () => {
                     </div>
                     <div　className="mb-20">
                         <div>学籍番号</div>
-                        <div className="text-xs text-gray">※数字四桁</div>
+                        <div className="text-xs text-gray">※数字４桁</div>
                         <label>
                             <input placeholder="0000" className="w-full h-40 px-16 mt-12 border rounded-2xl" type="text" name='studentnumber' value={studentNumber} onChange={handleStudentNumber} />
                         </label>
