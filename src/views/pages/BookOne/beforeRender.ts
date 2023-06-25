@@ -1,13 +1,11 @@
-import {getUserList} from "~/features/user/usecases/getUserList";
-import {getBook} from "~/features/book/usecases/getBook";
+import { getBook } from "~/features/book/usecases/getBook";
+import { GetServerSideProps } from "next";
 
-export const getServerSideProps = async () => {
-    const userList = await getUserList();
-    const book = await getBook();
-    return{
-        props:{
-            userList,
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const book = await getBook(context.params.bookId);
+    return {
+        props: {
             book,
         },
-    }
-}
+    };
+};
