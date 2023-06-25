@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {useMemo, useState} from 'react';
 import { useAuth } from '~/features/auth/hooks/useAuth';
 import { NextRouter, useRouter } from 'next/router';
 import { PAGE_PATH } from "~/features/application/constants/page";
 import { DefaultLayout } from "~/ui/layouts/Default";
 import {Heading} from "~/ui/components/Heading";
-import {NameInput} from "~/ui/components/NameInput";
+import {PasswordInput} from "~/ui/components/PasswordInput";
+import inRange from "lodash/inRange";
 
 export const SignUpPage = () => {
     const [name, setName] = useState<string>('');
@@ -23,6 +24,14 @@ export const SignUpPage = () => {
         } catch (error) {
             console.log('Error signing up: ', error);
         }
+    };
+
+    const handleChangePassword= (result: string) => {
+        const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]+$/;
+        if (pattern.test(result)) {
+            return;
+        }
+            setPassword(result);
     };
 
 
@@ -44,6 +53,17 @@ export const SignUpPage = () => {
         handleSignUp();
     }
 
+    const isValidPassword = useMemo(() => {
+        const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]+$/
+        return pattern.test(password);
+    }, [password]);
+
+    const isDisplayPasswordError = useMemo(() => {
+        return password.length > 0 && !isValidPassword;
+    }, [isValidPassword, password.length]);
+
+
+
     return (
         <DefaultLayout disableCtrls>
         <div className="flex flex-col justify-center px-30">
@@ -53,27 +73,28 @@ export const SignUpPage = () => {
                     <div className="mt-20 mb-12">
                         <div>メールアドレス</div>
                         <label>
-                            <input className="w-370 h-40 px-10 border rounded" type="text" name='email' value={email} onChange={handleEmail} />
+                            <input placeholder="xxxxx@gmail.com" className="w-full h-40 px-16 mt-12 border rounded-2xl" type="text" name='email' value={email} onChange={handleEmail} />
                         </label>
                     </div>
                     <div　className="mb-20">
                         <div>学籍番号</div>
-                        <div className="text-xxs text-gray">※数字四桁</div>
+                        <div className="text-xs text-gray">※数字四桁</div>
                         <label>
-                            <input className="w-370 h-40 px-10 border rounded" type="text" name='studentnumber' value={studentNumber} onChange={handleStudentNumber} />
+                            <input placeholder="0000" className="w-full h-40 px-16 mt-12 border rounded-2xl" type="text" name='studentnumber' value={studentNumber} onChange={handleStudentNumber} />
                         </label>
                     </div>
                     <div className="flex flex-col mb-20">
                         <div>氏名</div>
                         <label>
-                            <input className="w-370 h-40 px-10 border rounded" type="text" name='name' value={name} onChange={handleName} />
+                            <input placeholder="高専花子" className="w-full h-40 px-16 mt-12 border rounded-2xl" type="text" name='name' value={name} onChange={handleName} />
                         </label>
                     </div>
                     <div className="mb-12">
-                        <div>パスワード</div>
-                        <label>
-                            <input className="w-370 h-40 px-10 border rounded" type="password" name='password' value={password} onChange={handlePassword} />
-                        </label>
+                        <PasswordInput password={password} warning={isDisplayPasswordError} onChange={handleChangePassword} />
+
+                        {/*<label>*/}
+                        {/*    <input className="w-full h-40 px-16 mt-12 border rounded-2xl" type="password" name='password' value={password} onChange={handlePassword} />*/}
+                        {/*</label>*/}
                     </div>
                     <div className="flex justify-center mt-20">
                         <button className="w-200 h-40 bg-brand-green text-white rounded" type='submit'>保存</button>

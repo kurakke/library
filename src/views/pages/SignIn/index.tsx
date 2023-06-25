@@ -39,17 +39,17 @@ export const SignInPage = () => {
                     <div className="mt-20 mb-12">
                         <div>メールアドレス</div>
                         <label>
-                            <input className="w-370 h-40 px-10 border rounded"　type="text" name='email' value={email} onChange={handleEmail} />
+                            <input className="w-full h-40 px-10 mt-12 border rounded-2xl"　type="text" name='email' value={email} onChange={handleEmail} />
                         </label>
                     </div>
                     <div　className="mt-20 mb-12">
                         <div>パスワード</div>
                         <label>
-                            <input className="w-370 h-40 px-10 border rounded"　type="password" name='password' value={password} onChange={handlePassword} />
+                            <input className="w-full h-40 mt-12 px-10 border rounded-2xl"　type="password" name='password' value={password} onChange={handlePassword} />
                         </label>
                     </div>
                     <div className="flex justify-center mt-20">
-                        <button className="w-200 h-40 bg-brand-green text-white rounded" type='submit'>保存</button>
+                        <button className="w-200 h-40 mt-12 bg-brand-green text-white rounded" type='submit'>保存</button>
                     </div>
                 </form>
             </div>

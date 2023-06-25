@@ -49,7 +49,7 @@ export const AccountUpdatePage = () => {
 
     return (
         <DefaultLayout>
-            <form className="px-30 pt-12" onSubmit={handleSubmitForm}>
+            <form className="px-30 pt-12">
                 <Heading>アカウント更新</Heading>
                 <NameInput name={name} onChange={handleChangeName}/>
                 <StudentIdInput
@@ -64,6 +64,7 @@ export const AccountUpdatePage = () => {
                     <Button
                         type="submit"
                         disable={!(isValidName && isValidStudentId)}
+                        onClick={handleSubmitForm}
                     >
                         保存する
                     </Button>
