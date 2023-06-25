@@ -28,9 +28,9 @@ export const SignUpPage = () => {
 
     const handleChangePassword= (result: string) => {
         const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]+$/;
-        if (pattern.test(result)) {
-            return;
-        }
+        // if (pattern.test(result)) {
+        //     return;
+        // }
             setPassword(result);
     };
 
@@ -54,7 +54,8 @@ export const SignUpPage = () => {
     }
 
     const isValidPassword = useMemo(() => {
-        const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]+$/
+        const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#_$%^&*()-])[A-Za-z\d!@#$%^&*()_-]+$/
+        console.log(password);
         return pattern.test(password);
     }, [password]);
 
