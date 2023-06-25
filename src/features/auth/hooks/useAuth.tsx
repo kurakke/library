@@ -39,7 +39,9 @@ const authContext = createContext({} as UseAuth);
 
 export const ProvideAuth = ({ children }) => {
     const auth = useProvideAuth();
-    return <authContext.Provider value={auth}> {children} </authContext.Provider>;
+    return (
+        <authContext.Provider value={auth}> {children} </authContext.Provider>
+    );
 };
 
 export const useAuth = () => {
@@ -49,67 +51,76 @@ export const useAuth = () => {
 export const useProvideAuth = (): UseAuth => {
     const [isLoading, setIsLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [userId, setUserId] = useState('');
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [userId, setUserId] = useState("");
 
-    // useEffect(() => {
-    //     Auth.currentAuthenticatedUser()
-    //         .then((result) => {
-    //             setUsername(result.username);
-    //             setIsAuthenticated(true);
-    //             setIsLoading(false);
-    //         })
-    //         .catch(() => {
-    //             setUsername('');
-    //             setIsAuthenticated(false);
-    //             setIsLoading(false);
-    //         });
-    // }, []);
+    useEffect(() => {
+        Auth.currentAuthenticatedUser()
+            .then((result) => {
+                setUsername(result.username);
+                setIsAuthenticated(true);
+                setIsLoading(false);
+                setUserId(result.attributes.sub);
+            })
+            .catch(() => {
+                setUsername("");
+                setIsAuthenticated(false);
+                setIsLoading(false);
+            });
+    }, []);
 
     const signUp: UseAuth["signUp"] = async (params) => {
         try {
             const result = await Auth.signUp({
                 username: params.email,
-                password: params.password
+                password: params.password,
             });
             if (!result.user) {
-                throw new Error('ユーザー登録に失敗しました。');
+                throw new Error("ユーザー登録に失敗しました。");
             }
-            const user = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/create`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id: result.userSub, name: params.name, email: params.email, studentNumber: params.studentNumber }),
-            }).then<User>((res) => {
+            const user = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/create`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: result.userSub,
+                        name: params.name,
+                        email: params.email,
+                        studentNumber: params.studentNumber,
+                    }),
+                }
+            ).then<User>((res) => {
                 return res.json();
-            })
+            });
             setUserId(user.id);
             setUsername(user.name);
             setIsAuthenticated(true);
             setPassword(params.password);
-            return { success: true, message: 'ユーザー登録に成功しました。' };
+            return { success: true, message: "ユーザー登録に成功しました。" };
         } catch (error) {
             return {
                 success: false,
-                message: '認証に失敗しました。',
+                message: "認証に失敗しました。",
             };
         }
     };
 
     const confirmSignUp = async (verificationCode: string) => {
         try {
-            console.log('userid' + userId);
+            console.log("userid" + userId);
 
             await Auth.confirmSignUp(userId, verificationCode);
             const result = await signIn(userId, password);
-            setPassword('');
+            setPassword("");
             return result;
         } catch (error) {
             return {
                 success: false,
-                message: '認証に失敗しました。',
+                message: "認証に失敗しました。",
             };
         }
     };
@@ -120,11 +131,11 @@ export const useProvideAuth = (): UseAuth => {
             setUsername(result.username);
             setIsAuthenticated(true);
             setUserId(result.attributes.sub);
-            return { success: true, message: '認証に成功しました' };
+            return { success: true, message: "認証に成功しました" };
         } catch (error) {
             return {
                 success: false,
-                message: '認証に失敗しました。',
+                message: "認証に失敗しました。",
             };
         }
     };
@@ -132,14 +143,14 @@ export const useProvideAuth = (): UseAuth => {
     const signOut = async () => {
         try {
             await Auth.signOut();
-            setUsername('');
+            setUsername("");
             setIsAuthenticated(false);
-            setUserId('');
-            return { success: true, message: '' };
+            setUserId("");
+            return { success: true, message: "" };
         } catch (error) {
             return {
                 success: false,
-                message: 'ログアウトに失敗しました。',
+                message: "ログアウトに失敗しました。",
             };
         }
     };
