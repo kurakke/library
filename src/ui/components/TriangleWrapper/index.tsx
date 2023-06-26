@@ -10,7 +10,8 @@ export const TriangleWrapper = ({ children }: Props) => {
             <div>
                 <div className="lib-clip-upper-left absolute w-full h-full bg-brand-green" />
             </div>
-            <div className="relative h-[157px]">{children}</div>
+            {/* TODO: このh-[120px]はレイアウトが崩れる対策のためなので必要に応じて削除してください */}
+            <div className="relative h-[120px]">{children}</div>
         </div>
     );
 };

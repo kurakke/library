@@ -31,8 +31,7 @@ export const Book = ({ book, isWithoutLink = false }: Props) => {
 
 const BookContent = ({ book }: { book: BookEntity }) => (
     <div>
-        {/* TODO: コメントアウトを最終的に直す必要があります */}
-        {/* <div className="w-full mt-12 rounded-3xl aspect-video bg-expressive-red" /> */}
+        <div className="w-full mt-12 rounded-3xl aspect-video bg-expressive-red" />
         <div className="flex justify-between mt-8">
             <h3 className="font-black">{book.title}</h3>
             <div className="lib-tag bg-brand-green text-white">タグ</div>
