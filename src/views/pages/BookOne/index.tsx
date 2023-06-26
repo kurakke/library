@@ -20,7 +20,7 @@ export const BookOne = ({
     return (
         <DefaultLayout>
             <div className="px-16 mt-16">
-                <Book book={book}></Book>
+                <Book book={book} isWithoutLink></Book>
             </div>
             <div className="mt-20 mx-16 border border-gray-light" />
             <div className="mt-16 mx-16">

@@ -11,12 +11,11 @@ import { BookEntity } from "~/features/book/entities";
 import { InferGetServerSidePropsType } from "next";
 import { getServerSideProps } from "~/views/pages/Root/beforeRender";
 import Link from "next/link";
-import {createDynamicUrl} from "~/features/application/utils/url";
+import { createDynamicUrl } from "~/features/application/utils/url";
 
 export const RootPage = (
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-
     const [books, setBooks] = useState<BookEntity[]>([]);
     const ref = useRef<HTMLDivElement>(null);
     const [page, setPage] = useState<number>(1);
@@ -35,10 +34,9 @@ export const RootPage = (
                 setBooks((prev) => [...prev, ...next.list]);
                 setPage((prev) => prev + 1);
                 setIsReached(next.isReached);
-            }
+            };
             fn();
-        }
-        )
+        });
         if (ref.current === null) {
             return;
         }
@@ -77,7 +75,9 @@ export const RootPage = (
                         <div ref={ref} className="lib-loader" />
                     </div>
                 ) : (
-                    <p className="text-center py-36">これ以上本はありません。</p>
+                    <p className="text-center py-36">
+                        これ以上本はありません。
+                    </p>
                 )}
             </div>
         </DefaultLayout>
