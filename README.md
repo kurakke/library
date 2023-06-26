@@ -6,10 +6,9 @@
 - TypeScript
 - AWS Cognito
 - AWS Amplify
-## Features
-
 ## 起動方法
 ```
 npm install
 npm run dev
 ```
+## Features
