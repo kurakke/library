@@ -40,11 +40,17 @@ export const BooksPage = ({
                             displayStatus={displayStatus}
                             onChange={handleChangeTab}
                         />
-                        {searchResult.list.map((book) => (
-                            <li>
-                                <Book book={book} />
-                            </li>
-                        ))}
+                        {searchResult.list.length !== 0 ? (
+                            searchResult.list.map((book) => (
+                                <li>
+                                    <Book book={book} />
+                                </li>
+                            ))
+                        ) : (
+                            <div className="flex justify-center items-center mt-[128px] text-gray-dark font-bold text-[18px]">
+                                検索結果に一致する本は見つかりませんでした
+                            </div>
+                        )}
                     </div>
                 </div>
             </DefaultLayout>
