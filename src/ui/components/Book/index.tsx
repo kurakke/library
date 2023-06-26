@@ -7,7 +7,8 @@ export type Props = {
 export const Book = ({ book }: Props) => {
     return (
         <div>
-            <div className="w-full mt-12 rounded-3xl aspect-video bg-expressive-red" />
+            {/* TODO: コメントアウトを最終的に直す必要があります */}
+            {/* <div className="w-full mt-12 rounded-3xl aspect-video bg-expressive-red" /> */}
             <div className="flex justify-between mt-8">
                 <h3 className="font-black">{book.title}</h3>
                 <div className="lib-tag bg-brand-green text-white">タグ</div>
