@@ -41,18 +41,9 @@ export const BooksPage = ({
                             onChange={handleChangeTab}
                         />
                         {searchResult.list.map((book) => (
-                            <Link
-                                href={createDynamicUrl(PAGE_PATH.BookOne, {
-                                    bookId: book.id,
-                                })}
-                                key={book.id}
-                            >
-                                <a>
-                                    <li>
-                                        <Book book={book} />
-                                    </li>
-                                </a>
-                            </Link>
+                            <li>
+                                <Book book={book} />
+                            </li>
                         ))}
                     </div>
                 </div>
