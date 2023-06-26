@@ -11,7 +11,8 @@ export const Hero = () => {
                         コン研 - 図書館
                     </h1>
                 </div>
-                <div className="w-full rounded-2xl mt-32 p-12 bg-brand-green-light">
+                {/* TODO: コメントアウトを最終的に直す必要があります */}
+                {/* <div className="w-full rounded-2xl mt-32 p-12 bg-brand-green-light">
                     <div className="flex justify-between w-full px-8 pb-8 border-b border-dashed">
                         <p className="font-black">本の借り方を知る</p>
                         <div className="flex items-center">
@@ -19,7 +20,7 @@ export const Hero = () => {
                             <p className="rounded-full w-20 h-20 bg-brand-green"></p>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* TODO: コメントアウトを最終的に直す必要があります */}
                 {/* <div className="w-full aspect-square bg-expressive-red rounded-3xl mt-12" /> */}
             </div>
