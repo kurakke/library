@@ -68,7 +68,7 @@ export const SignInPage = () => {
                         <div className="flex justify-center mt-20">
                                 新規登録は
                                 <Link href="/signup">
-                                    <a className="text-brand-green border-b">こちら</a>
+                                    <a className="text-brand-green border-b-2">こちら</a>
                                 </Link>
                                 から
                         </div>
