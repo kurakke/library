@@ -7,12 +7,12 @@ import { useRouter } from "next/router";
 import { getServerSideProps } from "~/views/pages/Books/beforeRender";
 import { InferGetServerSidePropsType } from "next";
 import { Tab, DisplayStatus } from "~/ui/components/Tab";
-import { createDynamicUrl } from "~/features/application/utils/url";
-import Link from "next/link";
+import { bookSearch } from "~/features/book/usecases/bookSearch";
 
 export const BooksPage = ({
-    searchResult,
+    result,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    const [searchResult, setSearchResult] = useState(result);
     const router = useRouter();
     const handleSearch = (result: string) => {
         router.push({
@@ -31,9 +31,16 @@ export const BooksPage = ({
     };
 
     useEffect(() => {
-        if (displayStatus === DisplayStatus.CanRent) {
-        }
-    }, [displayStatus]);
+        (async () => {
+            if (displayStatus === DisplayStatus.CanRent && router.isReady) {
+                const res = await bookSearch({
+                    serchWord: router.query.serchWord,
+                    filter: "canRent",
+                });
+                setSearchResult(res);
+            }
+        })();
+    }, [displayStatus, router]);
 
     return (
         <div>
@@ -45,8 +52,8 @@ export const BooksPage = ({
                             displayStatus={displayStatus}
                             onChange={handleChangeTab}
                         />
-                        {searchResult.list.length !== 0 ? (
-                            searchResult.list.map((book) => (
+                        {searchResult?.list.length !== 0 ? (
+                            searchResult?.list.map((book) => (
                                 <Book book={book} key={book.id} />
                             ))
                         ) : (

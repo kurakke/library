@@ -6,11 +6,11 @@ export const getServerSideProps = async (context) => {
         serchWord: context.query.keyword,
     };
 
-    const searchResult = await bookSearch(query);
+    const result = await bookSearch(query);
 
     return {
         props: {
-            searchResult,
+            result,
         },
     };
 };
