@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {PAGE_PATH} from "~/features/application/constants/page";
+import { PAGE_PATH } from "~/features/application/constants/page";
 import classNames from "classnames";
 
 export type Props = {
@@ -7,11 +7,16 @@ export type Props = {
     disableCtrls?: boolean;
 };
 
-export const Header = ({className, disableCtrls}: Props) => {
+export const Header = ({ className, disableCtrls }: Props) => {
     return (
-        <div className={classNames("flex justify-between items-center w-full px-20 h-60 bg-white", className)}>
+        <div
+            className={classNames(
+                "flex justify-between items-center w-full px-20 h-60 bg-white",
+                className
+            )}
+        >
             <Link href={PAGE_PATH.Root}>
-                <a>
+                <a className="z-10">
                     <h1 className="text-lg font-black">コン研‐図書館</h1>
                 </a>
             </Link>
