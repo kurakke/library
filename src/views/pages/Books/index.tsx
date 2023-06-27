@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchInput } from "~/ui/components/SearchInput";
 import { DefaultLayout } from "~/ui/layouts/Default";
 import { Book } from "~/ui/components/Book";
@@ -30,6 +30,11 @@ export const BooksPage = ({
         setDisplayStatus(result);
     };
 
+    useEffect(() => {
+        if (displayStatus === DisplayStatus.CanRent) {
+        }
+    }, [displayStatus]);
+
     return (
         <div>
             <DefaultLayout>
@@ -42,9 +47,7 @@ export const BooksPage = ({
                         />
                         {searchResult.list.length !== 0 ? (
                             searchResult.list.map((book) => (
-                                <li>
-                                    <Book book={book} />
-                                </li>
+                                <Book book={book} key={book.id} />
                             ))
                         ) : (
                             <div className="flex justify-center items-center mt-[128px] text-gray-dark font-bold text-[18px]">

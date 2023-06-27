@@ -18,7 +18,6 @@ export const Book = ({ book, isWithoutLink = false }: Props) => {
                     href={createDynamicUrl(PAGE_PATH.BookOne, {
                         bookId: book.id,
                     })}
-                    key={book.id}
                 >
                     <a>
                         <BookContent book={book} />
