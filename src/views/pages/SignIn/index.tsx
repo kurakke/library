@@ -3,6 +3,8 @@ import { DefaultLayout } from "~/ui/layouts/Default";
 import React from "react";
 import { useAuth } from "~/features/auth/hooks/useAuth";
 import {Heading} from "~/ui/components/Heading";
+import Link from "next/link";
+
 
 export const SignInPage = () => {
     const [email, setEmail] = useState<string>('')
@@ -51,6 +53,16 @@ export const SignInPage = () => {
                     <div className="flex justify-center mt-20">
                         <button className="w-200 h-40 mt-12 bg-brand-green text-white rounded" type='submit'>保存</button>
                     </div>
+                    <div className="flex justify-center mt-20">
+                        <div className="flex justify-center mt-20">
+                                新規登録は
+                                <Link href="/signup">
+                                    <a className="text-brand-green border-b-2">こちら</a>
+                                </Link>
+                                から
+                        </div>
+                    </div>
+
                 </form>
             </div>
             </div>
