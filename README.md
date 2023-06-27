@@ -2,7 +2,7 @@
 
 <center>これは部活の部内図書を管理するための Web サイトです。
 <br>本の情報や貸し出し状況が確認できます。</center>
-<img src="https://github.com/kurakke/library-web/blob/develop/src/assets/readme/site.png" alt="サイトの画像">
+<img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/site.png alt="サイトの画像">
 
 ## Build With
 
