@@ -7,8 +7,6 @@ import { useRouter } from "next/router";
 import { getServerSideProps } from "~/views/pages/Books/beforeRender";
 import { InferGetServerSidePropsType } from "next";
 import { Tab, DisplayStatus } from "~/ui/components/Tab";
-import { createDynamicUrl } from "~/features/application/utils/url";
-import Link from "next/link";
 
 export const BooksPage = ({
     searchResult,
@@ -40,11 +38,9 @@ export const BooksPage = ({
                             displayStatus={displayStatus}
                             onChange={handleChangeTab}
                         />
-                        {searchResult.list.length !== 0 ? (
-                            searchResult.list.map((book) => (
-                                <li>
-                                    <Book book={book} />
-                                </li>
+                        {searchResult[displayStatus]?.list.length !== 0 ? (
+                            searchResult[displayStatus]?.list.map((book) => (
+                                <Book book={book} key={book.id} />
                             ))
                         ) : (
                             <div className="flex justify-center items-center mt-[128px] text-gray-dark font-bold text-[18px]">
