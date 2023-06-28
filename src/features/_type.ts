@@ -9,4 +9,4 @@ export type ItemList<Item> = {
     total: number;
     // 最終ページまで到達したかどうか
     isReached: boolean;
-}
+};

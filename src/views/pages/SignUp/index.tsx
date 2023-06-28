@@ -6,6 +6,7 @@ import { DefaultLayout } from "~/ui/layouts/Default";
 import { Heading } from "~/ui/components/Heading";
 import { PasswordInput } from "~/ui/components/PasswordInput";
 import inRange from "lodash/inRange";
+import Link from "next/link";
 
 export const SignUpPage = () => {
     const [name, setName] = useState<string>("");
@@ -126,13 +127,22 @@ export const SignUpPage = () => {
                             {/*    <input className="w-full h-40 px-16 mt-12 border rounded-2xl" type="password" name='password' value={password} onChange={handlePassword} />*/}
                             {/*</label>*/}
                         </div>
-                        <div className="flex justify-center mt-20">
+                        <div className="flex justify-center items-center">
                             <button
-                                className="w-200 h-40 bg-brand-green text-white rounded"
+                                className="flex w-200 h-40 bg-brand-green text-white rounded justify-center items-center mt-20"
                                 type="submit"
                             >
                                 保存
                             </button>
+                        </div>
+                        <div className="flex justify-center mt-20">
+                            ログインは
+                            <Link href="/signup">
+                                <a className="text-brand-green border-b-2">
+                                    こちら
+                                </a>
+                            </Link>
+                            から
                         </div>
                     </form>
                 </div>
