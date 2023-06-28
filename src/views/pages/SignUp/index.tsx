@@ -137,7 +137,7 @@ export const SignUpPage = () => {
                         </div>
                         <div className="flex justify-center mt-20">
                             ログインは
-                            <Link href="/signup">
+                            <Link href="/signin">
                                 <a className="text-brand-green border-b-2">
                                     こちら
                                 </a>
