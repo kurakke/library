@@ -16,6 +16,8 @@
 -   AWS Cognito
 -   AWS Amplify
 
+<img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/architecture.png alt="アーキテクチャ">
+
 ## 起動方法
 
 ```
