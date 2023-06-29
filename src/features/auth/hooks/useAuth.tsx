@@ -103,6 +103,7 @@ export const useProvideAuth = (): UseAuth => {
                         email: params.email,
                         studentNumber: params.studentNumber,
                     }),
+                    mode: 'cors',
                 }
             ).then<User>((res) => {
                 return res.json();

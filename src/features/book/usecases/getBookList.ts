@@ -11,6 +11,7 @@ export const getBookList = async ({ size = 99, page = 1 }: { size?: number, page
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            mode: 'cors',
         },
     }).then<ItemList<BookEntity>>((res) => {
         return res.json();
