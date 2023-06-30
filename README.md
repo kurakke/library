@@ -5,18 +5,18 @@
 
 [Build With](#build-with)  • [起動方法](#起動方法)
 </div>
-  
-<img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/site.png alt="サイトの画像">
 
 ## Build With
-
--   Next.js
--   TailwindCSS
--   TypeScript
--   AWS Cognito
--   AWS Amplify
-
-<img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/architecture.png alt="アーキテクチャ">
+<table> 
+  <tr>
+    <td>
+      • Next.js <br> • TailwindCSS <br> • TypeScript <br> • AWS Cognito <br> • AWS Amplify
+    </td>
+    <td>
+      <img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/architecture.png alt="アーキテクチャ">
+    </td>
+  </tr>
+</table>
 
 ## 起動方法
 
@@ -26,3 +26,5 @@ npm run dev
 ```
 
 ## Features
+
+<img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/site.png alt="サイトの画像">
