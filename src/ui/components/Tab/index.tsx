@@ -1,25 +1,24 @@
 import classNames from "classnames";
-import {useState} from "react";
+import { useState } from "react";
 
 export enum DisplayStatus {
     All,
-    CanRent
+    CanRent,
 }
 
 export type Props = {
     displayStatus: DisplayStatus;
     onChange: (displayStatus: DisplayStatus) => void;
-}
-export const Tab = ({displayStatus, onChange}: Props) => {
-
+};
+export const Tab = ({ displayStatus, onChange }: Props) => {
     const handleClick = () => {
         if (displayStatus === DisplayStatus.All) {
-            onChange(DisplayStatus.CanRent)
+            onChange(DisplayStatus.CanRent);
         }
         if (displayStatus === DisplayStatus.CanRent) {
-            onChange(DisplayStatus.All)
+            onChange(DisplayStatus.All);
         }
-    }
+    };
 
     return (
         <div
@@ -28,15 +27,19 @@ export const Tab = ({displayStatus, onChange}: Props) => {
             onClick={handleClick}
         >
             <button
-                className={classNames("z-10 transition-all duration-500", {"text-white": displayStatus === DisplayStatus.All})}
+                className={classNames("z-10 transition-all duration-500", {
+                    "text-white": displayStatus === DisplayStatus.All,
+                })}
             >
                 全て
             </button>
             <button
-                    className={classNames("z-10 transition-all duration-500", {"text-white": displayStatus === DisplayStatus.CanRent})}
+                className={classNames("z-10 transition-all duration-500", {
+                    "text-white": displayStatus === DisplayStatus.CanRent,
+                })}
             >
                 貸出可能
             </button>
         </div>
-    )
-}
+    );
+};

@@ -3,7 +3,7 @@ import React from "react";
 import { ConfirmPage } from "~/views/pages/Confirm";
 
 const Page: NextPage = () => {
-    return <ConfirmPage />
-}
+    return <ConfirmPage />;
+};
 
 export default Page;

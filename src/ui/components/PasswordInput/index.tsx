@@ -7,8 +7,11 @@ export type Props = {
 };
 
 export const PasswordInput = ({ password, warning, onChange }: Props) => {
-    const handleChangePassword: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_-])[A-Za-z\d!@#$%^&*()_-]+$/;
+    const handleChangePassword: React.ChangeEventHandler<HTMLInputElement> = (
+        e
+    ) => {
+        const pattern =
+            /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_-])[A-Za-z\d!@#$%^&*()_-]+$/;
         // if (pattern.test(e.target.value) && e.target.value.length >= 8) {
         //     return;
         // }
@@ -30,9 +33,12 @@ export const PasswordInput = ({ password, warning, onChange }: Props) => {
             <input
                 type="text"
                 name="password"
-                className={classNames("mt-8 px-16 w-full h-40 rounded-2xl border border-gray-dark", {
-                    "text-expressive-red border-expressive-red": warning
-                })}
+                className={classNames(
+                    "mt-8 px-16 w-full h-40 rounded-2xl border border-gray-dark",
+                    {
+                        "text-expressive-red border-expressive-red": warning,
+                    }
+                )}
                 value={password}
                 onChange={handleChangePassword}
             />

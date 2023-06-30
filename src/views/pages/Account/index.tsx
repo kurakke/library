@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { getServerSideProps } from "~/views/pages/Account/beforeRender";
 import { getLendRecord } from "~/features/user/usecases/getLendRecord";
 import { useAuth } from "~/features/auth/hooks/useAuth";
+import Link from "next/link";
 
 export const AccountPage = ({}: InferGetServerSidePropsType<
     typeof getServerSideProps
@@ -43,7 +44,9 @@ export const AccountPage = ({}: InferGetServerSidePropsType<
                         </div>
                         <div>{user?.name}</div>
                     </div>
-                    <Image src={SettingIcon} />
+                    <Link href="/account/update">
+                        <Image src={SettingIcon} />
+                    </Link>
                 </div>
                 <div className="pb-12 mt-12 border-gray-light border-b">
                     <Heading2>利用中の書籍</Heading2>

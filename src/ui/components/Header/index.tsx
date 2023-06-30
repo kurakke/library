@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { PAGE_PATH } from "~/features/application/constants/page";
 import classNames from "classnames";
+import {useAuth} from "~/features/auth/hooks/useAuth";
+import Image from "next/image"
+import PersonCircle from "~/assets/svgs/person-circle.svg"
 
 export type Props = {
     className?: string;
     disableCtrls?: boolean;
 };
 
-export const Header = ({ className, disableCtrls }: Props) => {
+export const Header = ({ className, disableCtrls}: Props) => {
+    const { isAuthenticated } = useAuth()
     return (
         <div
             className={classNames(
@@ -21,11 +25,17 @@ export const Header = ({ className, disableCtrls }: Props) => {
                 </a>
             </Link>
             {!disableCtrls && (
-                <Link href={PAGE_PATH.SignIn}>
-                    <a className="z-10 px-16 py-6 rounded lib-pointer bg-brand-green text-white text-xs font-black">
-                        ログイン
-                    </a>
-                </Link>
+                <>
+                    {isAuthenticated ? (
+                        <Link href="/account"><a className="z-10"><Image src={PersonCircle} /></a></Link>
+                    ) : (
+                        <Link href={PAGE_PATH.SignIn}>
+                            <a className="z-10 px-16 py-6 rounded lib-pointer bg-brand-green text-white text-xs font-black">
+                                ログイン
+                            </a>
+                        </Link>
+                    )}
+                </>
             )}
         </div>
     );

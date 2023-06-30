@@ -1,5 +1,5 @@
-import {DefaultLayout} from "~/ui/layouts/Default";
-import {Infomation} from "~/ui/components/Infomation";
+import { DefaultLayout } from "~/ui/layouts/Default";
+import { Infomation } from "~/ui/components/Infomation";
 
 export const UnavailablePage = () => {
     return (
@@ -8,11 +8,12 @@ export const UnavailablePage = () => {
                 <h1 className="font-black">サービスを利用できません</h1>
                 <Infomation>
                     <p className="text-center text-xxs">
-                        管理者がアカウントを承認するまでは<br/>
+                        管理者がアカウントを承認するまでは
+                        <br />
                         サービスを利用できません
                     </p>
                 </Infomation>
             </div>
         </DefaultLayout>
-    )
-}
+    );
+};
