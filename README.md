@@ -3,7 +3,7 @@
 <div align="center">これは部活の部内図書を管理するための Web サイトです。
 <br>本の情報や貸し出し状況が確認できます。
 
-[Build With](#build-with)  • [起動方法](#起動方法)
+[Build With](#build-with)  • [起動方法](#起動方法) • [Features](#features)
 </div>
 
 ## Build With
