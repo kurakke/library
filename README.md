@@ -27,4 +27,13 @@ npm run dev
 
 ## Features
 
-<img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/site.png alt="サイトの画像">
+#### 主なページについての説明です<br>
+メインページで本の検索と一覧が表示されます
+<img src=https://github.com/kurakke/library-web/blob/feature/add-readme/src/assets/readme/site.png alt="メインページ">
+***
+本の詳細ページで本の貸し出し履歴が確認できます
+![本の詳細ページ](https://github.com/kurakke/library-web/assets/111258079/78699760-306f-4859-af8e-96b451d30af2)
+***
+サインインページで新規登録とログインへの移動ができます
+![localhost-3000-signup](https://github.com/kurakke/library-web/assets/111258079/7f363876-504f-4c96-9897-d53d3dcac913)
+
