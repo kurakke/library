@@ -8,10 +8,14 @@ import { NameInput } from "~/ui/components/NameInput";
 import { PAGE_PATH } from "~/features/application/constants/page";
 import { StudentIdInput } from "~/ui/components/StudentIdInput";
 import { MouseEventHandler, useMemo, useState } from "react";
+import { useAuth } from "~/features/auth/hooks/useAuth";
+import { updateUser } from "~/features/user/usecases/updateUser";
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState("");
     const [studentId, setStudentId] = useState("");
+
+    const { userId, userEmail } = useAuth();
 
     const isValidName = useMemo(() => {
         return name.length > 0;
@@ -47,7 +51,12 @@ export const AccountUpdatePage = () => {
         if (!(isValidStudentId && isValidName)) {
             return;
         }
-        console.log({ name, studentId });
+        updateUser({
+            id: userId,
+            name: name,
+            email: userEmail,
+            studentNumber: Number(studentId),
+        });
     };
 
     return (
