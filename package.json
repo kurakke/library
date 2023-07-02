@@ -9,6 +9,7 @@
         "type-check": "tsc"
     },
     "dependencies": {
+        "@headlessui/react": "^1.7.15",
         "aws-amplify": "^5.3.1",
         "classnames": "^2.3.2",
         "dayjs": "^1.11.7",
@@ -16,7 +17,8 @@
         "next": "^12.3.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-hot-toast": "^2.4.0"
+        "react-hot-toast": "^2.4.0",
+        "tailwind-variants": "^0.1.10"
     },
     "devDependencies": {
         "@svgr/webpack": "^7.0.0",
