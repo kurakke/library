@@ -8,7 +8,7 @@ export type Props = Omit<ComponentProps<"button">, "type"> & {
 };
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
-    ({ type, disable, children, ...rest }: Props) => {
+    ({ type, disable, children, ...rest }: Props, forwardRef) => {
         return (
             <button
                 type={type}
@@ -20,6 +20,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
                         "bg-brand-green lib-pointer": !disable,
                     }
                 )}
+                ref={forwardRef}
                 {...rest}
             >
                 {children}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PAGE_PATH } from "~/features/application/constants/page";
 import { createDynamicUrl } from "~/features/application/utils/url";
@@ -28,16 +29,18 @@ export const Book = ({ book, isWithoutLink = false }: Props) => {
     );
 };
 
-const BookContent = ({ book }: { book: BookEntity }) => (
-    <div>
-        <div className="w-full mt-12 rounded-3xl aspect-video bg-expressive-red" />
-        <div className="flex justify-between mt-8">
-            <h3 className="font-black">{book.title}</h3>
-            <div className="lib-tag bg-brand-green text-white">タグ</div>
+const BookContent = ({ book }: { book: BookEntity }) => {
+    return (
+        <div>
+            <Image src="/webp/book.webp" width={300} height={223} />
+            <div className="flex justify-between mt-8">
+                <h3 className="font-black">{book.title}</h3>
+                <div className="lib-tag bg-brand-green text-white">タグ</div>
+            </div>
+            <div className="flex space-x-[4px]">
+                <div className="text-xs">タイトル: {book.title},</div>
+                <div className="text-xs">著者: {book.owner}</div>
+            </div>
         </div>
-        <div className="flex space-x-[4px]">
-            <div className="text-xs">タイトル: {book.title},</div>
-            <div className="text-xs">著者: {book.owner}</div>
-        </div>
-    </div>
-);
+    );
+};
