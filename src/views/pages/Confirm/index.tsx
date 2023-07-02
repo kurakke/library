@@ -2,12 +2,15 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { useAuth } from "~/features/auth/hooks/useAuth";
 import { DefaultLayout } from "~/ui/layouts/Default";
 import { Heading2 } from "~/ui/components/Heading2";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 export const ConfirmPage = () => {
     const auth = useAuth();
     const [confirmCode, setConfirmCode] = useState<string>("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
         console.log(auth);
@@ -28,9 +31,15 @@ export const ConfirmPage = () => {
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
     };
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         console.log(auth);
-        auth.confirmSignUp(confirmCode, email, password);
+        const res = await auth.confirmSignUp(confirmCode, email, password);
+        if (res.success) {
+            toast("新規登録に成功しました");
+            router.push("/");
+        } else {
+            toast("認証に失敗しました");
+        }
     };
     const handleSubmit = (event) => {
         event.preventDefault();
