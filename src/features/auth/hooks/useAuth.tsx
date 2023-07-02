@@ -25,7 +25,7 @@ interface UseAuth {
         password: string
     ) => Promise<Result>;
     signIn: (username: string, password: string) => Promise<Result>;
-    signOut: () => void;
+    signOut: () => Promise<Result>;
     resendSignUp: (email: string) => Promise<Result>;
 }
 
@@ -103,7 +103,7 @@ export const useProvideAuth = (): UseAuth => {
                         email: params.email,
                         studentNumber: params.studentNumber,
                     }),
-                    mode: 'cors',
+                    mode: "cors",
                 }
             ).then<User>((res) => {
                 return res.json();
