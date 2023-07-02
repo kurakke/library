@@ -44,9 +44,19 @@ export const AccountPage = ({}: InferGetServerSidePropsType<
                         </div>
                         <div>{user?.name}</div>
                     </div>
-                    <Link href="/account/update">
-                        <Image src={SettingIcon} />
-                    </Link>
+                    <div className="flex flex-col">
+                        <button
+                            className="text-expressive-red border rounded p-[2px] bg-gray-bright mb-[8px]"
+                            onClick={() => console.log("logout")}
+                        >
+                            ログアウト
+                        </button>
+                        <Link href="/account/update">
+                            <a className="flex items-center justify-center">
+                                <Image src={SettingIcon} />
+                            </a>
+                        </Link>
+                    </div>
                 </div>
                 <div className="pb-12 mt-12 border-gray-light border-b">
                     <Heading2>利用中の書籍</Heading2>
