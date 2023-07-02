@@ -12,6 +12,6 @@ export const fetcher = <T extends object>(
             "Content-Type": "application/json",
         },
         body: JSON.stringify(init.body) || undefined,
-        mode: 'cors',
+        mode: "cors",
     });
 };

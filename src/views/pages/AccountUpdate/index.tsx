@@ -8,6 +8,7 @@ import { NameInput } from "~/ui/components/NameInput";
 import { PAGE_PATH } from "~/features/application/constants/page";
 import { StudentIdInput } from "~/ui/components/StudentIdInput";
 import { MouseEventHandler, useMemo, useState } from "react";
+import { editUser } from "~/features/user/usecases/editUser";
 
 export const AccountUpdatePage = () => {
     const [name, setName] = useState("");
@@ -47,7 +48,12 @@ export const AccountUpdatePage = () => {
         if (!(isValidStudentId && isValidName)) {
             return;
         }
-        console.log({ name, studentId });
+        editUser({
+            id: "",
+            name: name,
+            mail: "",
+            studentNumber: studentId,
+        });
     };
 
     return (
